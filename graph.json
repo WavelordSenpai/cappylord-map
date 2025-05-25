@@ -6,7 +6,6 @@
   { "data": { "id": "Sleep", "label": "😴 Sleep – The Gateway to Regeneration" }},
   { "data": { "id": "Breathwork", "label": "🌬️ Breathwork – Mastery of the Vital Force" }},
 
-  // 🧠 Edges (Connections)
   { "data": { "source": "Welcome", "target": "README.md" }},
   { "data": { "source": "Welcome", "target": "Nutrition" }},
   { "data": { "source": "Welcome", "target": "Exercise" }},
