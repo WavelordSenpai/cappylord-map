@@ -1,14 +1,92 @@
 [
-  { "data": { "id": "Welcome", "label": "Welcome" }},
-  { "data": { "id": "README.md", "label": "README.md" }},
-  { "data": { "id": "Nutrition", "label": "🌳 Nutrition for Avatar Optimization" }},
-  { "data": { "id": "Exercise", "label": "💪 Exercise – Forge the Avatar Body" }},
-  { "data": { "id": "Sleep", "label": "😴 Sleep – The Gateway to Regeneration" }},
-  { "data": { "id": "Breathwork", "label": "🌬️ Breathwork – Mastery of the Vital Force" }},
-
-  { "data": { "source": "Welcome", "target": "README.md" }},
-  { "data": { "source": "Welcome", "target": "Nutrition" }},
-  { "data": { "source": "Welcome", "target": "Exercise" }},
-  { "data": { "source": "Welcome", "target": "Sleep" }},
-  { "data": { "source": "Welcome", "target": "Breathwork" }}
+  {
+    "data": {
+      "id": "README",
+      "label": "README"
+    }
+  },
+  {
+    "data": {
+      "id": "Welcome",
+      "label": "Welcome"
+    }
+  },
+  {
+    "data": {
+      "id": "\ud83c\udf2c\ufe0f Breathwork \u2013 Mastery of the Vital Force",
+      "label": "\ud83c\udf2c\ufe0f Breathwork \u2013 Mastery of the Vital Force"
+    }
+  },
+  {
+    "data": {
+      "id": "\ud83d\udcaa Exercise \u2013 Forge the Avatar Body",
+      "label": "\ud83d\udcaa Exercise \u2013 Forge the Avatar Body"
+    }
+  },
+  {
+    "data": {
+      "id": "\ud83d\ude34Sleep \u2013 The Gateway to Regeneration",
+      "label": "\ud83d\ude34Sleep \u2013 The Gateway to Regeneration"
+    }
+  },
+  {
+    "data": {
+      "id": "\ud83e\udd66 Nutrition for Avatar Optimization",
+      "label": "\ud83e\udd66 Nutrition for Avatar Optimization"
+    }
+  },
+  {
+    "data": {
+      "source": "README",
+      "target": "Physical Optimization"
+    }
+  },
+  {
+    "data": {
+      "source": "README",
+      "target": "Metaphysical Optimization"
+    }
+  },
+  {
+    "data": {
+      "source": "README",
+      "target": "Ancient Esoterica"
+    }
+  },
+  {
+    "data": {
+      "source": "README",
+      "target": "Interactive Map Architecture"
+    }
+  },
+  {
+    "data": {
+      "source": "\ud83e\udd66 Nutrition for Avatar Optimization",
+      "target": "Breathwork"
+    }
+  },
+  {
+    "data": {
+      "source": "\ud83e\udd66 Nutrition for Avatar Optimization",
+      "target": "Exercise"
+    }
+  },
+  {
+    "data": {
+      "source": "\ud83e\udd66 Nutrition for Avatar Optimization",
+      "target": "Mitochondria"
+    }
+  },
+  {
+    "data": {
+      "source": "\ud83e\udd66 Nutrition for Avatar Optimization",
+      "target": "Alchemy"
+    }
+  },
+  {
+    "data": {
+      "source": "\ud83e\udd66 Nutrition for Avatar Optimization",
+      "target": "Avatar Kryptontes"
+    }
+  }
 ]
