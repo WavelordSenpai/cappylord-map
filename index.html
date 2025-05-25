@@ -8,6 +8,7 @@
       margin: 0;
       padding: 0;
       height: 100%;
+      overflow: hidden; /* ✅ Stops the weird flashing scrollbars */
       background-color: #000;
       font-family: 'Segoe UI', sans-serif;
     }
@@ -35,7 +36,7 @@
             {
               selector: 'node',
               style: {
-                'background-color': '#ff69b4',
+                'background-color': '#0077ff', // ✅ Blue node color
                 'label': 'data(label)',
                 'color': '#fff',
                 'text-valign': 'center',
@@ -59,7 +60,7 @@
             }
           ],
           layout: {
-            name: 'cose', // organic-like layout
+            name: 'cose',
             animate: true,
             fit: true,
             padding: 50
