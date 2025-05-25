@@ -8,19 +8,35 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden; /* ✅ Stops the weird flashing scrollbars */
       background-color: #000;
       font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
     }
     #cy {
-      width: 100%;
+      width: 70%;
       height: 100%;
+      float: left;
+    }
+    #note-content {
+      width: 30%;
+      height: 100%;
+      float: right;
+      overflow-y: auto;
+      background-color: #111;
+      color: #fff;
+      padding: 20px;
+      box-sizing: border-box;
+      border-left: 2px solid #333;
     }
   </style>
   <script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
 </head>
 <body>
   <div id="cy"></div>
+  <div id="note-content">
+    <h2>Select a topic</h2>
+    <div id="note-text">Click a node to view its content.</div>
+  </div>
 
   <script>
     fetch('graph.json')
@@ -36,7 +52,7 @@
             {
               selector: 'node',
               style: {
-                'background-color': '#0077ff', // ✅ Blue node color
+                'background-color': '#0077ff',
                 'label': 'data(label)',
                 'color': '#fff',
                 'text-valign': 'center',
@@ -65,6 +81,15 @@
             fit: true,
             padding: 50
           }
+        });
+
+        // Click event to update the right-side note viewer
+        cy.on('tap', 'node', function(evt){
+          const node = evt.target;
+          const content = node.data('content');
+          const label = node.data('label');
+          document.querySelector('#note-content h2').textContent = label;
+          document.getElementById('note-text').innerHTML = content || "No content available.";
         });
       })
       .catch(error => {
