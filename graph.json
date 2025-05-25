@@ -1,1 +1,15 @@
-[]
+[
+  { "data": { "id": "Welcome", "label": "Welcome" }},
+  { "data": { "id": "README.md", "label": "README.md" }},
+  { "data": { "id": "Nutrition", "label": "🌳 Nutrition for Avatar Optimization" }},
+  { "data": { "id": "Exercise", "label": "💪 Exercise – Forge the Avatar Body" }},
+  { "data": { "id": "Sleep", "label": "😴 Sleep – The Gateway to Regeneration" }},
+  { "data": { "id": "Breathwork", "label": "🌬️ Breathwork – Mastery of the Vital Force" }},
+
+  // 🧠 Edges (Connections)
+  { "data": { "source": "Welcome", "target": "README.md" }},
+  { "data": { "source": "Welcome", "target": "Nutrition" }},
+  { "data": { "source": "Welcome", "target": "Exercise" }},
+  { "data": { "source": "Welcome", "target": "Sleep" }},
+  { "data": { "source": "Welcome", "target": "Breathwork" }}
+]
