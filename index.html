@@ -1,50 +1,81 @@
-<script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    fetch('graph.json')
-      .then(res => res.json())
-      .then(data => {
-        const cy = cytoscape({
-          container: document.getElementById('cy'),
-          elements: data,
-          style: [
-            {
-              selector: 'node',
-              style: {
-                'background-color': '#ff69b4',
-                'label': 'data(label)',
-                'color': '#fff',
-                'text-valign': 'center',
-                'text-halign': 'center',
-                'font-size': '14px',
-                'text-outline-color': '#222',
-                'text-outline-width': 1,
-                'width': 'label',
-                'height': 'label',
-                'padding': 5,
-                'shape': 'roundrectangle'
-              }
-            },
-            {
-              selector: 'edge',
-              style: {
-                'width': 2,
-                'line-color': '#888',
-                'target-arrow-shape': 'triangle',
-                'target-arrow-color': '#888',
-                'curve-style': 'bezier'
-              }
-            }
-          ],
-          layout: {
-            name: 'cose',
-            animate: true,
-            padding: 10
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CappyLord Map</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #000;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #cy {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+</head>
+<body>
+  <div id="cy"></div>
+
+  <script>
+    // Wait for DOM to be ready
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch('graph.json')
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
           }
+          return res.json();
+        })
+        .then(data => {
+          const cy = cytoscape({
+            container: document.getElementById('cy'),
+            elements: data,
+            style: [
+              {
+                selector: 'node',
+                style: {
+                  'background-color': '#ff69b4',
+                  'label': 'data(label)',
+                  'color': '#fff',
+                  'text-valign': 'center',
+                  'text-halign': 'center',
+                  'font-size': '14px',
+                  'text-outline-color': '#222',
+                  'text-outline-width': 1,
+                  'width': 'label',
+                  'height': 'label',
+                  'padding': 5,
+                  'shape': 'roundrectangle'
+                }
+              },
+              {
+                selector: 'edge',
+                style: {
+                  'width': 2,
+                  'line-color': '#888',
+                  'target-arrow-shape': 'triangle',
+                  'target-arrow-color': '#888',
+                  'curve-style': 'bezier'
+                }
+              }
+            ],
+            layout: {
+              name: 'cose',
+              animate: true,
+              padding: 10
+            }
+          });
+        })
+        .catch(err => {
+          console.error('Error loading graph.json:', err);
         });
-      })
-      .catch(err => {
-        console.error("Error loading graph.json:", err);
-      });
-  });
-</script>
+    });
+  </script>
+</body>
+</html>
