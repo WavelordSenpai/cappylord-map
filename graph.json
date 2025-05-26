@@ -1,15 +1,15 @@
-{ 
+{
   "nodes": [
-    { "id": "Core Pillars", "label": "🧱 Core Pillars", "category": "Root" },
-    { "id": "Physical Optimization", "label": "🔥 Physical Optimization", "category": "Core Pillars" },
-    { "id": "Breathwork", "label": "🌬️ Breathwork – Mastery of the Vital Force", "category": "Physical Optimization" },
-    { "id": "Exercise", "label": "💪 Exercise – Forge the Avatar Body", "category": "Physical Optimization" },
-    { "id": "Cellular Optimization", "label": "🧬 Cellular Optimization", "category": "Physical Optimization" },
-    { "id": "Nutrition", "label": "🍎 Nutrition – Alchemy of Fuel", "category": "Physical Optimization" },
-    { "id": "ATP", "label": "⚡ ATP – Energy Currency of Life", "category": "Cellular Optimization" },
-    { "id": "Red Light Therapy", "label": "🔴 Red Light Therapy – Photonic Rejuvenation", "category": "Cellular Optimization" },
-    { "id": "Mitochondrial Biogenesis", "label": "🌟 Mitochondrial Biogenesis – Engine Multiplication", "category": "Cellular Optimization" },
-    { "id": "Mitochondria", "label": "🔋 Mitochondria", "category": "Cellular Optimization" }
+    { "id": "Core Pillars", "label": "🧱 Core Pillars" },
+    { "id": "Physical Optimization", "label": "🔥 Physical Optimization" },
+    { "id": "Breathwork", "label": "🌬️ Breathwork – Mastery of the Vital Force", "content": "Breathwork is the conscious control of breathing to influence your physical, emotional, and mental state." },
+    { "id": "Exercise", "label": "💪 Exercise – Forge the Avatar Body", "content": "Exercise strengthens the body, sharpens the mind, and activates the spirit. Move daily to evolve your avatar." },
+    { "id": "Cellular Optimization", "label": "🧬 Cellular Optimization", "content": "Optimize your biology at the cellular level for maximum vitality and performance." },
+    { "id": "Nutrition", "label": "🍎 Nutrition – Alchemy of Fuel", "content": "Eat with intention. Food is fuel, information, and vibration." },
+    { "id": "ATP", "label": "⚡ ATP – Energy Currency of Life", "content": "ATP powers every cell in your body. Optimize its production to unlock boundless energy." },
+    { "id": "Red Light Therapy", "label": "🔴 Red Light Therapy – Photonic Rejuvenation", "content": "Red light therapy uses specific wavelengths to rejuvenate cells and stimulate healing." },
+    { "id": "Mitochondrial Biogenesis", "label": "🌟 Mitochondrial Biogenesis – Engine Multiplication", "content": "Increase your mitochondrial count to enhance energy and resilience." },
+    { "id": "Mitochondria", "label": "🔋 Mitochondria", "content": "The powerhouse of the cell. Care for them to care for your energy systems." }
   ],
   "edges": [
     { "id": "1", "source": "Core Pillars", "target": "Physical Optimization" },
@@ -23,4 +23,3 @@
     { "id": "9", "source": "Cellular Optimization", "target": "Mitochondria" }
   ]
 }
-

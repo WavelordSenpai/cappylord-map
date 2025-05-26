@@ -47,7 +47,22 @@
       .then(data => {
         const cy = cytoscape({
           container: document.getElementById('cy'),
-          elements: data,
+          elements: [
+            ...data.nodes.map(node => ({
+              data: {
+                id: node.id,
+                label: node.label,
+                content: node.content || ""
+              }
+            })),
+            ...data.edges.map(edge => ({
+              data: {
+                id: edge.id,
+                source: edge.source,
+                target: edge.target
+              }
+            }))
+          ],
           style: [
             {
               selector: 'node',
