@@ -1,126 +1,146 @@
-[
-  {
-    "data": {
-      "id": "README.md",
-      "label": "🧿 CappyLord: The Divine Avatar",
-      "content": "# 🧿 CappyLord: The Divine Avatar\n\nCappyLord™ is the ultimate symbolic avatar..."
+{
+  "nodes": [
+    {
+      "data": {
+        "id": "Physical Optimization",
+        "label": "🔥 Physical Optimization",
+        "category": "Core Pillars"
+      }
+    },
+    {
+      "data": {
+        "id": "Sleep",
+        "label": "😴 Sleep",
+        "category": "Physical Optimization"
+      }
+    },
+    {
+      "data": {
+        "id": "Breathwork",
+        "label": "🌬️ Breathwork",
+        "category": "Physical Optimization"
+      }
+    },
+    {
+      "data": {
+        "id": "Exercise",
+        "label": "💪 Exercise",
+        "category": "Physical Optimization"
+      }
+    },
+    {
+      "data": {
+        "id": "Nutrition",
+        "label": "🍎 Nutrition",
+        "category": "Physical Optimization"
+      }
+    },
+    {
+      "data": {
+        "id": "Cellular Optimization",
+        "label": "🧬 Cellular Optimization",
+        "category": "Core Pillars"
+      }
+    },
+    {
+      "data": {
+        "id": "Mitochondria",
+        "label": "🔋 Mitochondria",
+        "category": "Cellular Optimization"
+      }
+    },
+    {
+      "data": {
+        "id": "ATP",
+        "label": "⚡ ATP",
+        "category": "Cellular Optimization"
+      }
+    },
+    {
+      "data": {
+        "id": "Mitochondrial Biogenesis",
+        "label": "🌱 Mitochondrial Biogenesis",
+        "category": "Cellular Optimization"
+      }
+    },
+    {
+      "data": {
+        "id": "Red Light Therapy",
+        "label": "🔴 Red Light Therapy",
+        "category": "Cellular Optimization"
+      }
     }
-  },
-  {
-    "data": {
-      "id": "Welcome",
-      "label": "Welcome",
-      "content": ""
+  ],
+  "edges": [
+    {
+      "data": {
+        "id": "1",
+        "source": "Physical Optimization",
+        "target": "Sleep"
+      }
+    },
+    {
+      "data": {
+        "id": "2",
+        "source": "Physical Optimization",
+        "target": "Breathwork"
+      }
+    },
+    {
+      "data": {
+        "id": "3",
+        "source": "Physical Optimization",
+        "target": "Exercise"
+      }
+    },
+    {
+      "data": {
+        "id": "4",
+        "source": "Physical Optimization",
+        "target": "Nutrition"
+      }
+    },
+    {
+      "data": {
+        "id": "5",
+        "source": "Core Pillars",
+        "target": "Physical Optimization"
+      }
+    },
+    {
+      "data": {
+        "id": "6",
+        "source": "Core Pillars",
+        "target": "Cellular Optimization"
+      }
+    },
+    {
+      "data": {
+        "id": "7",
+        "source": "Cellular Optimization",
+        "target": "Mitochondria"
+      }
+    },
+    {
+      "data": {
+        "id": "8",
+        "source": "Cellular Optimization",
+        "target": "ATP"
+      }
+    },
+    {
+      "data": {
+        "id": "9",
+        "source": "Cellular Optimization",
+        "target": "Mitochondrial Biogenesis"
+      }
+    },
+    {
+      "data": {
+        "id": "10",
+        "source": "Cellular Optimization",
+        "target": "Red Light Therapy"
+      }
     }
-  },
-  {
-    "data": {
-      "id": "🌬️ Breathwork – Mastery of the Vital Force",
-      "label": "🌬️ Breathwork – Mastery of the Vital Force",
-      "content": "# 🌬️ Breathwork – Mastery of the Vital Force\n\n## 🫁 What Is Breathwork?\nBreath is life..."
-    }
-  },
-  {
-    "data": {
-      "id": "💪 Exercise – Forge the Avatar Body",
-      "label": "💪 Exercise – Forge the Avatar Body",
-      "content": ""
-    }
-  },
-  {
-    "data": {
-      "id": "😴Sleep – The Gateway to Regeneration",
-      "label": "😴Sleep – The Gateway to Regeneration",
-      "content": "# 😴 Sleep – The Gateway to Regeneration\n\n## 🌌 Purpose of Sleep\nSleep is the sacred reset ritual..."
-    }
-  },
-  {
-    "data": {
-      "id": "🥦 Nutrition for Avatar Optimization",
-      "label": "🥦 Nutrition for Avatar Optimization",
-      "content": "# 🥦 Nutrition for Avatar Optimization\n\nOptimizing your nutrition is the first step..."
-    }
-  },
-  {
-    "data": {
-      "id": "Physical Optimization",
-      "label": "🔥 Physical Optimization",
-      "content": ""
-    }
-  },
-  {
-    "data": {
-      "id": "Metaphysical Optimization",
-      "label": "🧠 Metaphysical Optimization",
-      "content": ""
-    }
-  },
-  {
-    "data": {
-      "id": "Ancient Esoterica",
-      "label": "📜 Ancient Esoterica",
-      "content": ""
-    }
-  },
-  {
-    "data": {
-      "id": "Interactive Map Architecture",
-      "label": "🗺️ Interactive Map Architecture",
-      "content": ""
-    }
-  },
-  {
-    "data": {
-      "source": "README.md",
-      "target": "Physical Optimization"
-    }
-  },
-  {
-    "data": {
-      "source": "README.md",
-      "target": "Metaphysical Optimization"
-    }
-  },
-  {
-    "data": {
-      "source": "README.md",
-      "target": "Ancient Esoterica"
-    }
-  },
-  {
-    "data": {
-      "source": "README.md",
-      "target": "Interactive Map Architecture"
-    }
-  },
-  {
-    "data": {
-      "source": "🥦 Nutrition for Avatar Optimization",
-      "target": "🌬️ Breathwork – Mastery of the Vital Force"
-    }
-  },
-  {
-    "data": {
-      "source": "🥦 Nutrition for Avatar Optimization",
-      "target": "💪 Exercise – Forge the Avatar Body"
-    }
-  },
-  {
-    "data": {
-      "source": "🥦 Nutrition for Avatar Optimization",
-      "target": "Mitochondria"
-    }
-  },
-  {
-    "data": {
-      "source": "🥦 Nutrition for Avatar Optimization",
-      "target": "Alchemy"
-    }
-  },
-  {
-    "data": {
-      "source": "🥦 Nutrition for Avatar Optimization",
-      "target": "Avatar Kryptontes"
-    }
-  }
-]
+  ]
+}
