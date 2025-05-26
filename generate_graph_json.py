@@ -1,44 +1,72 @@
 import os
 import json
 
-# ✅ Path to your unzipped vault
-VAULT_PATH = "wavelord-vault"
+VAULT_DIR = ".."  # Your parent vault directory
+OUTPUT_FILE = "graph.json"
 
-nodes = []
-edges = []
+def clean_label(filename):
+    name = filename.replace(".md", "")
+    emoji_map = {
+        "Nutrition": "🌳 Nutrition for Avatar Optimization",
+        "Exercise": "💪 Exercise – Forge the Avatar Body",
+        "Sleep": "😴 Sleep – The Gateway to Regeneration",
+        "Breathwork": "🌬️ Breathwork – Mastery of the Vital Force",
+        "README": "🧿 CappyLord: The Divine Avatar",
+        "Welcome": "Welcome",
+    }
+    return emoji_map.get(name, name)
 
-def traverse(folder, parent_id=None):
-    folder_name = os.path.basename(folder)
-    node_id = folder.replace(VAULT_PATH, "").strip("\\/")
+def extract_links(content):
+    import re
+    return re.findall(r"\[\[([^\]]+)\]\]", content)
 
-    # Create node
-    nodes.append({
-        "data": {
-            "id": node_id,
-            "label": folder_name
-        }
-    })
+def main():
+    nodes = []
+    edges = []
+    files_seen = set()
 
-    # Create edge to parent
-    if parent_id:
-        edges.append({
-            "data": {
-                "source": parent_id,
-                "target": node_id
-            }
-        })
+    for root, dirs, files in os.walk(VAULT_DIR):
+        for file in files:
+            if file.endswith(".md"):
+                filepath = os.path.join(root, file)
+                with open(filepath, "r", encoding="utf-8") as f:
+                    content = f.read()
 
-    # Go deeper
-    for item in os.listdir(folder):
-        path = os.path.join(folder, item)
-        if os.path.isdir(path):
-            traverse(path, node_id)
+                file_id = file
+                if file.lower() == "readme.md":
+                    file_id = "readme.md"
+                else:
+                    file_id = os.path.splitext(file)[0]
 
-# Run it
-traverse(VAULT_PATH)
+                label = clean_label(os.path.splitext(file)[0])
+                node = {
+                    "data": {
+                        "id": file_id,
+                        "label": label,
+                        "content": content
+                    }
+                }
 
-# Write out the JSON
-with open("graph.json", "w", encoding="utf-8") as f:
-    json.dump({"nodes": nodes, "edges": edges}, f, indent=2, ensure_ascii=False)
+                nodes.append(node)
+                files_seen.add(file_id)
 
-print("✅ graph.json created successfully!")
+                links = extract_links(content)
+                for link in links:
+                    target_id = link.strip()
+                    if target_id.endswith(".md"):
+                        target_id = target_id.replace(".md", "")
+                    edges.append({
+                        "data": {
+                            "source": file_id,
+                            "target": target_id
+                        }
+                    })
+
+    graph = nodes + edges
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as out:
+        json.dump(graph, out, indent=2, ensure_ascii=False)
+
+    print("✅ graph.json updated with note content.")
+
+if __name__ == "__main__":
+    main()
