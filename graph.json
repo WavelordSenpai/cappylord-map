@@ -1,146 +1,25 @@
 {
   "nodes": [
-    {
-      "data": {
-        "id": "Physical Optimization",
-        "label": "🔥 Physical Optimization",
-        "category": "Core Pillars"
-      }
-    },
-    {
-      "data": {
-        "id": "Sleep",
-        "label": "😴 Sleep",
-        "category": "Physical Optimization"
-      }
-    },
-    {
-      "data": {
-        "id": "Breathwork",
-        "label": "🌬️ Breathwork",
-        "category": "Physical Optimization"
-      }
-    },
-    {
-      "data": {
-        "id": "Exercise",
-        "label": "💪 Exercise",
-        "category": "Physical Optimization"
-      }
-    },
-    {
-      "data": {
-        "id": "Nutrition",
-        "label": "🍎 Nutrition",
-        "category": "Physical Optimization"
-      }
-    },
-    {
-      "data": {
-        "id": "Cellular Optimization",
-        "label": "🧬 Cellular Optimization",
-        "category": "Core Pillars"
-      }
-    },
-    {
-      "data": {
-        "id": "Mitochondria",
-        "label": "🔋 Mitochondria",
-        "category": "Cellular Optimization"
-      }
-    },
-    {
-      "data": {
-        "id": "ATP",
-        "label": "⚡ ATP",
-        "category": "Cellular Optimization"
-      }
-    },
-    {
-      "data": {
-        "id": "Mitochondrial Biogenesis",
-        "label": "🌱 Mitochondrial Biogenesis",
-        "category": "Cellular Optimization"
-      }
-    },
-    {
-      "data": {
-        "id": "Red Light Therapy",
-        "label": "🔴 Red Light Therapy",
-        "category": "Cellular Optimization"
-      }
-    }
+    { "id": "Core Pillars", "label": "🧱 Core Pillars", "category": "Root" },
+    { "id": "Physical Optimization", "label": "🔥 Physical Optimization", "category": "Core Pillars" },
+    { "id": "Breathwork", "label": "🌬️ Breathwork – Mastery of the Vital Force", "category": "Physical Optimization" },
+    { "id": "Exercise", "label": "💪 Exercise – Forge the Avatar Body", "category": "Physical Optimization" },
+    { "id": "Cellular Optimization", "label": "🧬 Cellular Optimization", "category": "Physical Optimization" },
+    { "id": "Nutrition", "label": "🍎 Nutrition – Alchemy of Fuel", "category": "Physical Optimization" },
+    { "id": "ATP", "label": "⚡ ATP – Energy Currency of Life", "category": "Cellular Optimization" },
+    { "id": "Red Light Therapy", "label": "🔴 Red Light Therapy – Photonic Rejuvenation", "category": "Cellular Optimization" },
+    { "id": "Mitochondrial Biogenesis", "label": "🌟 Mitochondrial Biogenesis – Engine Multiplication", "category": "Cellular Optimization" },
+    { "id": "Mitochondria", "label": "🔋 Mitochondria", "category": "Cellular Optimization" }
   ],
   "edges": [
-    {
-      "data": {
-        "id": "1",
-        "source": "Physical Optimization",
-        "target": "Sleep"
-      }
-    },
-    {
-      "data": {
-        "id": "2",
-        "source": "Physical Optimization",
-        "target": "Breathwork"
-      }
-    },
-    {
-      "data": {
-        "id": "3",
-        "source": "Physical Optimization",
-        "target": "Exercise"
-      }
-    },
-    {
-      "data": {
-        "id": "4",
-        "source": "Physical Optimization",
-        "target": "Nutrition"
-      }
-    },
-    {
-      "data": {
-        "id": "5",
-        "source": "Core Pillars",
-        "target": "Physical Optimization"
-      }
-    },
-    {
-      "data": {
-        "id": "6",
-        "source": "Core Pillars",
-        "target": "Cellular Optimization"
-      }
-    },
-    {
-      "data": {
-        "id": "7",
-        "source": "Cellular Optimization",
-        "target": "Mitochondria"
-      }
-    },
-    {
-      "data": {
-        "id": "8",
-        "source": "Cellular Optimization",
-        "target": "ATP"
-      }
-    },
-    {
-      "data": {
-        "id": "9",
-        "source": "Cellular Optimization",
-        "target": "Mitochondrial Biogenesis"
-      }
-    },
-    {
-      "data": {
-        "id": "10",
-        "source": "Cellular Optimization",
-        "target": "Red Light Therapy"
-      }
-    }
+    { "id": "1", "source": "Core Pillars", "target": "Physical Optimization" },
+    { "id": "2", "source": "Physical Optimization", "target": "Breathwork" },
+    { "id": "3", "source": "Physical Optimization", "target": "Exercise" },
+    { "id": "4", "source": "Physical Optimization", "target": "Cellular Optimization" },
+    { "id": "5", "source": "Physical Optimization", "target": "Nutrition" },
+    { "id": "6", "source": "Cellular Optimization", "target": "ATP" },
+    { "id": "7", "source": "Cellular Optimization", "target": "Red Light Therapy" },
+    { "id": "8", "source": "Cellular Optimization", "target": "Mitochondrial Biogenesis" },
+    { "id": "9", "source": "Cellular Optimization", "target": "Mitochondria" }
   ]
 }
