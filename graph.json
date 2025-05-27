@@ -1,25 +1,87 @@
 {
   "nodes": [
-    { "id": "Core Pillars", "label": "🧱 Core Pillars" },
-    { "id": "Physical Optimization", "label": "🔥 Physical Optimization" },
-    { "id": "Breathwork", "label": "🌬️ Breathwork – Mastery of the Vital Force", "content": "Breathwork is the conscious control of breathing to influence your physical, emotional, and mental state." },
-    { "id": "Exercise", "label": "💪 Exercise – Forge the Avatar Body", "content": "Exercise strengthens the body, sharpens the mind, and activates the spirit. Move daily to evolve your avatar." },
-    { "id": "Cellular Optimization", "label": "🧬 Cellular Optimization", "content": "Optimize your biology at the cellular level for maximum vitality and performance." },
-    { "id": "Nutrition", "label": "🍎 Nutrition – Alchemy of Fuel", "content": "Eat with intention. Food is fuel, information, and vibration." },
-    { "id": "ATP", "label": "⚡ ATP – Energy Currency of Life", "content": "ATP powers every cell in your body. Optimize its production to unlock boundless energy." },
-    { "id": "Red Light Therapy", "label": "🔴 Red Light Therapy – Photonic Rejuvenation", "content": "Red light therapy uses specific wavelengths to rejuvenate cells and stimulate healing." },
-    { "id": "Mitochondrial Biogenesis", "label": "🌟 Mitochondrial Biogenesis – Engine Multiplication", "content": "Increase your mitochondrial count to enhance energy and resilience." },
-    { "id": "Mitochondria", "label": "🔋 Mitochondria", "content": "The powerhouse of the cell. Care for them to care for your energy systems." }
+    {
+      "id": "Core Pillars.md",
+      "label": "Core Pillars",
+      "content": "\n🌟 The Core Pillars are the foundational domains of Wavelord’s Quintessential Human Development Map™. These categories represent the essential arenas of life mastery — from the physical vessel to the spiritual realms — and serve as the scaffolding for the avatar’s total optimization journey.\n\nEach pillar is a gateway into deeper practices, principles, and transformational technologies.\n\n🧱 Pillars:\n\n- 🔥 Physical Optimization  \n    Forge the body into a divine instrument through sleep, breath, movement, and nourishment.\n    \n- 🧠 Mental Mastery  \n    Harness focus, cognition, and neuroplasticity. Learn, adapt, and reprogram the mind.\n    \n- 💓 Emotional Alchemy  \n    Transmute emotional states, develop resilience, and harmonize the inner world.\n    \n- 🌀 Energetic Alignment  \n    Understand chakras, meridians, prana/qi, and the subtle forces that drive human vitality.\n    \n- 🔮 Spiritual Awakening  \n    Engage with higher consciousness, dreamwork, sacred rituals, and metaphysical exploration.\n    \n- 🛠️ System Design & Sovereignty  \n    Learn how to build systems, command time, wield knowledge networks, and live autonomously.\n    \n\n🧭 Purpose of the Map:\n\nThese pillars are not isolated — they form a living, breathing network. Every node you explore connects to others, encouraging synthesis across disciplines. Mastery is achieved not through compartmentalization, but through **synergy**.\n\n> 🧙‍♂️ “From ethers to empires, fortune flows to those who master the waveform.”"
+    },
+    {
+      "id": "Physical Optimization/Breathwork/Breathwork-Mastery of the Vital Force.md",
+      "label": "Breathwork-Mastery of the Vital Force",
+      "content": "\n\n What Is Breathwork?\nBreath is life. It is the carrier of prana (life-force energy), chi, and the bridge between the physical and energetic body. Conscious breath unlocks:\n\n- Nervous system regulation\n- Oxygen delivery & CO₂ balance\n- Access to higher states of awareness\n- Detoxification and energetic clearing\n\n## 🧘 Types of Breathwork\n\n### 🔵 Box Breathing (4-4-4-4)\n- Inhale 4s → Hold 4s → Exhale 4s → Hold 4s\n- Calms the nervous system, used by Navy SEALs\n\n### 🔺 Wim Hof Method\n- 30–40 deep breaths → retention hold\n- Activates adrenaline, immune function, and cold adaptation\n\n### 🌀 Holotropic / Shamanic Breathwork\n- Deep rhythmic breathing for 30–60 mins\n- Triggers altered states, emotional release\n\n### 🌊 Diaphragmatic Breathing\n- Expands the belly, not the chest\n- Engages parasympathetic nervous system\n\n## 🧬 Biological Benefits\n- Balances blood pH and CO₂/O₂\n- Improves mitochondrial efficiency\n- Reduces cortisol (stress hormone)\n- Boosts lymphatic flow and detox\n\n## 🔮 Spiritual Functions\n- Awakens dormant energy (kundalini)\n- Opens energetic meridians and chakras\n- Induces mystical, dreamlike experiences\n- Can trigger visions or emotional catharsis\n\n> 🌬️ “Master the breath, and you master the moment.”\n\n## 🛠️ Practices & Tools\n- **Morning Activation**: Wim Hof or fire breath\n- **Midday Focus**: Box breathing / alternate nostril\n- **Night Wind-down**: 4-7-8 breath or slow nasal breathing\n- Use apps: Othership, Breathwrk, Prana Breath\n- Optional tools: Tummo breathing, Buteyko Method\n\n---\n"
+    },
+    {
+      "id": "Physical Optimization/Cellular Optimizationn/ATP (Adenosine Triphosphate).md",
+      "label": "ATP (Adenosine Triphosphate)",
+      "content": "\n\n## 📘 Overview\nATP is the energy currency of life, fueling nearly every cellular process. It is synthesized primarily in the mitochondria via oxidative phosphorylation, converting glucose and oxygen into usable energy.\n\n## 🔬 Role in the Body\n- Powers muscular contractions\n- Drives nerve impulses\n- Fuels metabolic processes\n- Maintains ion gradients (Na⁺/K⁺ pumps)\n\n## 🧠 Optimization Strategies\n- 🥩 Support mitochondrial health (CoQ10, B-vitamins)\n- 🏋️‍♂️ Engage in resistance and aerobic training\n- ❄️ Use hormetic stress (cold, fasting)\n- 🌞 [[Red Light Therapy]] to enhance cytochrome c oxidase activity\n\n## ⚗️ Production Pathways\n- Glycolysis → 2 ATP\n- Krebs Cycle + ETC → ~34 ATP\n- Creatine Phosphate System (short bursts)\n\n## 🌌 Esoteric Insight\nATP is akin to chi or prana in biological form — a spark of divine energy at the molecular level. It represents transformation, action, and life in motion. Where ATP flows, vitality grows.\n\n## 🧭 Connections\n- [[Mitochondria]]\n- [[Mitochondrial Biogenesis]]\n- [[Cellular Optimization]]\n- [[Energy Systems]]\n"
+    },
+    {
+      "id": "Physical Optimization/Cellular Optimizationn/Cellular Optimization.md",
+      "label": "Cellular Optimization",
+      "content": "\n\nCellular Optimization is the foundation of vibrant health, energy production, and anti-aging. At the cellular level, our bodies are composed of trillions of units that must function efficiently for overall wellness. By enhancing mitochondrial function, increasing ATP production, and utilizing targeted therapies, we optimize the core engine of our biology.\n\n## 🔑 Key Concepts\n- Mitochondrial Health\n- ATP Production\n- Red Light Therapy\n- Mitochondrial Biogenesis\n\n## 💡 Why It Matters\nCellular optimization helps reduce inflammation, increase energy, accelerate healing, and slow down cellular aging. This makes it a vital pillar of any holistic optimization strategy.\n\n## 🔗 Related Nodes\n- [[Mitochondria]]\n- [[ATP]]\n- [[Mitochondrial Biogenesis]]\n- [[Red Light Therapy]]\n"
+    },
+    {
+      "id": "Physical Optimization/Cellular Optimizationn/Mitochondrial Biogenesis.md",
+      "label": "Mitochondrial Biogenesis",
+      "content": "\n\n## 📘 Overview\nMitochondrial biogenesis is the process by which cells increase their mitochondrial number and function. It is essential for improving energy production, endurance, and resilience at the cellular level.\n\n## 🧬 Triggers for Biogenesis\n- 🏃 Aerobic exercise\n- 🌬️ Hypoxia and breathwork\n- ❄️ Cold exposure\n- ⏳ Fasting\n- 🧪 AMPK & PGC-1α activation\n\n## 🧠 Optimization Strategies\n- 🧴 Supplements: PQQ, NAD⁺ precursors (NR/NMN), CoQ10\n- 🥗 Nutrient-dense diet (mitochondrial cofactors)\n- 🧘 Stress modulation (HRV training, cold therapy)\n- ☀️ [[Red Light Therapy]]\n\n## 🛠️ Key Molecules\n- PGC-1α: Master regulator of biogenesis\n- AMPK: Energy sensor and metabolic regulator\n- SIRT1: Longevity and stress resistance\n\n## 🌌 Esoteric Insight\nBiogenesis mirrors spiritual rebirth — cells reawaken, regenerate, and radiate greater light. It is cellular alchemy: transmuting potential into power, entropy into energy, decay into destiny.\n\n## 🧭 Connections\n- [[Mitochondria]]\n- [[ATP]]\n- [[Cellular Optimization]]\n- [[Hormesis]]\n"
+    },
+    {
+      "id": "Physical Optimization/Cellular Optimizationn/Red Light Therapy.md",
+      "label": "Red Light Therapy",
+      "content": "\n## 📘 Overview\nRed and near-infrared light therapy (also known as photobiomodulation) uses specific wavelengths of light to enhance mitochondrial function, reduce inflammation, and support tissue repair.\n\n## 🔬 How It Works\n- Light absorbed by cytochrome c oxidase (COX) in mitochondria\n- Enhances ATP synthesis\n- Reduces oxidative stress (via nitric oxide displacement)\n- Triggers repair and regeneration pathways\n\n## 🌈 Wavelengths Used\n- Red: 630–660 nm (skin surface)\n- Near-infrared: 810–850 nm (deep tissues)\n\n## 🧠 Optimization Uses\n- 🧠 Cognitive enhancement (transcranial light therapy)\n- 💪 Muscle recovery and performance\n- 👩 Skin rejuvenation and anti-aging\n- 💥 Joint and inflammation support\n\n## 🧪 Protocols\n- 5–20 minutes/day\n- 6–18 inches from device\n- Expose bare skin (remove creams)\n\n## 🌌 Esoteric Insight\nRed light symbolizes the inner fire of transformation and divine restoration. It awakens the latent solar code within the body — light speaks to light. Through this sacred wavelength, the flesh remembers the sun.\n\n## 🧭 Connections\n- [[Mitochondria]]\n- [[ATP]]\n- [[Mitochondrial Biogenesis]]\n- [[Cellular Optimization]]\n"
+    },
+    {
+      "id": "Physical Optimization/Exercise/Exercise-Forge the Avatar Body.md",
+      "label": "Exercise-Forge the Avatar Body",
+      "content": "\n\nExercise isn't just physical—it’s metaphysical. By training the body, you sharpen the mind, ignite the soul, and sculpt the ideal Avatar Vessel.\n\n## 🧠 Why We Train\n- Builds muscle, bone density, and endurance\n- Boosts mood via dopamine, serotonin, and endorphins\n- Enhances mitochondrial function and ATP output\n- Strengthens the willpower and discipline archetype\n- Stimulates the release of **myokines**—muscle-generated messengers that:\n  - Reduce inflammation\n  - Promote fat metabolism\n  - Support neurogenesis and brain plasticity\n  - Regulate immune function\n\n## ⚔️ Types of Avatar Training\n- **Resistance Training** – Foundation for physical strength and metabolic health\n- **HIIT (High-Intensity Interval Training)** – Fat-burning, heart-boosting, mitochondria-making\n- **Mobility & Stretching** – Longevity through flexibility and fluid motion\n- **Martial Arts / Flow Practices** – Merge combat with consciousness\n- **Outdoor Movement** – Grounding, solar activation, primal engagement\n\n## 🛠️ Tips from the Dojo\n- Train consistently, not obsessively\n- Periodize: rotate power, endurance, and recovery phases\n- Combine with breathwork for heightened effect\n- Use natural movement patterns (squats, carries, crawls)\n\n## 🔗 Link Up\n- [[Mitochondria]]\n- [[ATP]]\n- [[Sleep – Recovery Chamber]]\n- [[Nutrition – Fuel the Vessel]]\n"
+    },
+    {
+      "id": "Physical Optimization/Nutrition/Nutrition for Avatar Optimization.md",
+      "label": "Nutrition for Avatar Optimization",
+      "content": "\n\nOptimizing your nutrition is the first step toward building your divine avatar. Food is not just fuel — it is **vibration**, **information**, and **transformation**.\n\n---\n\n## 🌱 Core Concepts\n\n- **Golden Ratio Lifestyle Diet**: Eat in harmony with nature's geometry — whole foods, living enzymes, and structured meals.\n- **Raw Plant-Based Diet**: Maximize micronutrient density and cellular hydration.\n- **Intermittent Fasting**: Tap into autophagy and natural energy cycles.\n- **Detoxification**: Remove heavy metals, fluoride, MSG, and endocrine disruptors.\n- **Probiotics & Gut Health**: Your gut is your second brain — feed it living intelligence.\n- **Electromagnetic Fields**: Reduce EMF exposure around food preparation.\n- **Hydration & Electrolytes**: Structured water, Celtic sea salt, and natural minerals.\n\n---\n\n## 🧪 Advanced Tools\n\n- Superfoods (spirulina, moringa, chlorella)\n- Herbal medicine (ashwagandha, reishi, rhodiola)\n- Plant-based amino acids\n- Targeted supplements (omega-3, lecithin, magnesium)\n- Nutrient timing & bioavailability\n\n---\n\n## 🌍 Why It Matters\n\n- Your **brain**, **heart**, and **cells** are nourished by what you eat.\n- Nutrition affects your **light body**, your **DNA expression**, and your **spiritual connection**.\n- A true initiate **eats with awareness**, aligning with cosmic and earthly rhythms.\n\n---\n\n## 🛠 Related Nodes\n\n[[Breathwork]]\n[[Exercise]]\n[[Mitochondria]]\n[[Alchemy]]\n[[Avatar Kryptontes]]\n"
+    },
+    {
+      "id": "Physical Optimization/Sleep – The Gateway to Regeneration/Sleep-Revival.md",
+      "label": "Sleep-Revival",
+      "content": "\n\n\n## 🌌 Purpose of Sleep\nSleep is the sacred reset ritual of the body and mind — a daily death and rebirth cycle. It’s essential for:\n\n- Cellular repair\n- Memory consolidation\n- Hormonal balance\n- Immune function\n- Dream communication and higher guidance\n\n## 🧠 Sleep Cycles\nThere are five stages of sleep, cycling every ~90 minutes:\n1. Light Sleep (Stage 1 & 2)\n2. Deep Sleep (Stage 3 & 4 – Delta waves, healing)\n3. REM Sleep (Stage 5 – Dreaming, memory encoding)\n\nBalanced cycles = optimal regeneration.\n\n## 🕰️ Sleep Timing (Chronobiology)\nYour body runs on a circadian rhythm (~24h). Disrupting this rhythm damages physical and mental health.\n\n**Best practices:**\n- Sleep before 11pm (melatonin peak)\n- Wake with natural light\n- Avoid blue light after sunset\n- Honor the Solar–Lunar cycle\n\n## 🧪 Optimization Protocols\n- **Sleep in total darkness** (no LEDs!)\n- **No food 2-3 hours before bed**\n- **Magnesium** + **glycine** for relaxation\n- Avoid caffeine after 2pm\n- Wear blue-light blocking glasses\n- Try binaural beats (Delta 0.5–4 Hz)\n\n## 🧘 Metaphysical Sleep\n- Dreams are portals to the astral realm\n- Practice **lucid dreaming** to engage with the subconscious\n- Sleep is where integration happens — physically, mentally, and spiritually\n\n> 🛌 “Every night, we return to Source and emerge anew.”\n\n## 🌿 Tools & Resources\n- Aura Ring / Whoop (track HRV & deep sleep)\n- Red light bulbs for evening use\n- Dream journal (record astral messages)\n- Melatonin, valerian root, or chamomile\n\n---\n\nReady to restore your avatar in deep, golden slumber 🌕😴✨\n"
+    }
   ],
   "edges": [
-    { "id": "1", "source": "Core Pillars", "target": "Physical Optimization" },
-    { "id": "2", "source": "Physical Optimization", "target": "Breathwork" },
-    { "id": "3", "source": "Physical Optimization", "target": "Exercise" },
-    { "id": "4", "source": "Physical Optimization", "target": "Cellular Optimization" },
-    { "id": "5", "source": "Physical Optimization", "target": "Nutrition" },
-    { "id": "6", "source": "Cellular Optimization", "target": "ATP" },
-    { "id": "7", "source": "Cellular Optimization", "target": "Red Light Therapy" },
-    { "id": "8", "source": "Cellular Optimization", "target": "Mitochondrial Biogenesis" },
-    { "id": "9", "source": "Cellular Optimization", "target": "Mitochondria" }
+    {
+      "from": "Physical Optimization/Cellular Optimizationn/ATP (Adenosine Triphosphate).md",
+      "to": "Physical Optimization/Cellular Optimizationn/Red Light Therapy.md"
+    },
+    {
+      "from": "Physical Optimization/Cellular Optimizationn/ATP (Adenosine Triphosphate).md",
+      "to": "Physical Optimization/Cellular Optimizationn/Mitochondrial Biogenesis.md"
+    },
+    {
+      "from": "Physical Optimization/Cellular Optimizationn/ATP (Adenosine Triphosphate).md",
+      "to": "Physical Optimization/Cellular Optimizationn/Cellular Optimization.md"
+    },
+    {
+      "from": "Physical Optimization/Cellular Optimizationn/Cellular Optimization.md",
+      "to": "Physical Optimization/Cellular Optimizationn/Mitochondrial Biogenesis.md"
+    },
+    {
+      "from": "Physical Optimization/Cellular Optimizationn/Cellular Optimization.md",
+      "to": "Physical Optimization/Cellular Optimizationn/Red Light Therapy.md"
+    },
+    {
+      "from": "Physical Optimization/Cellular Optimizationn/Mitochondrial Biogenesis.md",
+      "to": "Physical Optimization/Cellular Optimizationn/Red Light Therapy.md"
+    },
+    {
+      "from": "Physical Optimization/Cellular Optimizationn/Mitochondrial Biogenesis.md",
+      "to": "Physical Optimization/Cellular Optimizationn/Cellular Optimization.md"
+    },
+    {
+      "from": "Physical Optimization/Cellular Optimizationn/Red Light Therapy.md",
+      "to": "Physical Optimization/Cellular Optimizationn/Mitochondrial Biogenesis.md"
+    },
+    {
+      "from": "Physical Optimization/Cellular Optimizationn/Red Light Therapy.md",
+      "to": "Physical Optimization/Cellular Optimizationn/Cellular Optimization.md"
+    }
   ]
 }
