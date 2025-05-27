@@ -1,72 +1,52 @@
 import os
+import re
 import json
 
-VAULT_DIR = ".."  # Your parent vault directory
-OUTPUT_FILE = "graph.json"
+# ✅ Absolute path to your vault folder with .md files
+BASE_FOLDER = r"D:\Downloads\Obsidian vault\Wavelord's Quintessential Human Development Map™\Wavelord's Quintessential Human Development Map™\Core Pillars – Foundations of the Wavelord Map"
+OUTPUT_PATH = r"D:\Downloads\Obsidian vault\Wavelord's Quintessential Human Development Map™\Wavelord's Quintessential Human Development Map™\cappylordmap\graph.json"
 
-def clean_label(filename):
-    name = filename.replace(".md", "")
-    emoji_map = {
-        "Nutrition": "🌳 Nutrition for Avatar Optimization",
-        "Exercise": "💪 Exercise – Forge the Avatar Body",
-        "Sleep": "😴 Sleep – The Gateway to Regeneration",
-        "Breathwork": "🌬️ Breathwork – Mastery of the Vital Force",
-        "README": "🧿 CappyLord: The Divine Avatar",
-        "Welcome": "Welcome",
-    }
-    return emoji_map.get(name, name)
+# 🧠 Build node and edge lists
+nodes = []
+edges = []
+node_ids = {}
+node_id = 0
 
-def extract_links(content):
-    import re
-    return re.findall(r"\[\[([^\]]+)\]\]", content)
+# 📍 Step 1: Add all Markdown notes as nodes
+for root, dirs, files in os.walk(BASE_FOLDER):
+    for file in files:
+        if file.endswith(".md"):
+            file_path = os.path.join(root, file)
+            rel_path = os.path.relpath(file_path, BASE_FOLDER).replace("\\", "/")
+            title = os.path.splitext(file)[0]
 
-def main():
-    nodes = []
-    edges = []
-    files_seen = set()
+            nodes.append({
+                "id": node_id,
+                "label": title,
+                "path": rel_path
+            })
+            node_ids[title] = node_id
+            node_id += 1
 
-    for root, dirs, files in os.walk(VAULT_DIR):
-        for file in files:
-            if file.endswith(".md"):
-                filepath = os.path.join(root, file)
-                with open(filepath, "r", encoding="utf-8") as f:
-                    content = f.read()
-
-                file_id = file
-                if file.lower() == "readme.md":
-                    file_id = "readme.md"
-                else:
-                    file_id = os.path.splitext(file)[0]
-
-                label = clean_label(os.path.splitext(file)[0])
-                node = {
-                    "data": {
-                        "id": file_id,
-                        "label": label,
-                        "content": content
-                    }
-                }
-
-                nodes.append(node)
-                files_seen.add(file_id)
-
-                links = extract_links(content)
-                for link in links:
-                    target_id = link.strip()
-                    if target_id.endswith(".md"):
-                        target_id = target_id.replace(".md", "")
+# 🔗 Step 2: Parse links ([[linked note]]) and add edges
+for node in nodes:
+    file_path = os.path.join(BASE_FOLDER, node["path"].replace("/", os.sep))
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            content = f.read()
+            links = re.findall(r"\[\[([^\]]+)\]\]", content)
+            for link in links:
+                target_title = link.split("|")[0].strip()
+                if target_title in node_ids:
                     edges.append({
-                        "data": {
-                            "source": file_id,
-                            "target": target_id
-                        }
+                        "from": node["id"],
+                        "to": node_ids[target_title]
                     })
+    except FileNotFoundError:
+        print(f"⚠️ File not found: {file_path}")
 
-    graph = nodes + edges
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as out:
-        json.dump(graph, out, indent=2, ensure_ascii=False)
+# 💾 Step 3: Save as JSON
+with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+    json.dump({"nodes": nodes, "edges": edges}, f, indent=2)
 
-    print("✅ graph.json updated with note content.")
-
-if __name__ == "__main__":
-    main()
+print(f"✅ Graph exported with {len(nodes)} nodes and {len(edges)} edges.")
