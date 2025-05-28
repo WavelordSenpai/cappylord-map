@@ -1,52 +1,54 @@
 import os
-import re
 import json
 
-# ✅ Absolute path to your vault folder with .md files
-BASE_FOLDER = r"D:\Downloads\Obsidian vault\Wavelord's Quintessential Human Development Map™\Wavelord's Quintessential Human Development Map™\Core Pillars – Foundations of the Wavelord Map"
-OUTPUT_PATH = r"D:\Downloads\Obsidian vault\Wavelord's Quintessential Human Development Map™\Wavelord's Quintessential Human Development Map™\cappylordmap\graph.json"
+VAULT_PATH = r"D:\Downloads\Obsidian vault\Wavelord's Quintessential Human Development Map™\Wavelord's Quintessential Human Development Map™"
+OUTPUT_PATH = os.path.join(VAULT_PATH, "cappylordmap", "graph.json")
 
-# 🧠 Build node and edge lists
+def extract_links(md_content):
+    import re
+    return re.findall(r"\[\[(.*?)\]\]", md_content)
+
 nodes = []
-edges = []
-node_ids = {}
-node_id = 0
+links = []
+seen = set()
 
-# 📍 Step 1: Add all Markdown notes as nodes
-for root, dirs, files in os.walk(BASE_FOLDER):
+for root, _, files in os.walk(VAULT_PATH):
     for file in files:
         if file.endswith(".md"):
-            file_path = os.path.join(root, file)
-            rel_path = os.path.relpath(file_path, BASE_FOLDER).replace("\\", "/")
-            title = os.path.splitext(file)[0]
+            full_path = os.path.join(root, file)
+            relative_path = os.path.relpath(full_path, VAULT_PATH)
+            node_id = os.path.splitext(file)[0]
 
-            nodes.append({
-                "id": node_id,
-                "label": title,
-                "path": rel_path
-            })
-            node_ids[title] = node_id
-            node_id += 1
+            try:
+                with open(full_path, "r", encoding="utf-8") as f:
+                    content = f.read()
 
-# 🔗 Step 2: Parse links ([[linked note]]) and add edges
-for node in nodes:
-    file_path = os.path.join(BASE_FOLDER, node["path"].replace("/", os.sep))
-    try:
-        with open(file_path, "r", encoding="utf-8") as f:
-            content = f.read()
-            links = re.findall(r"\[\[([^\]]+)\]\]", content)
-            for link in links:
-                target_title = link.split("|")[0].strip()
-                if target_title in node_ids:
-                    edges.append({
-                        "from": node["id"],
-                        "to": node_ids[target_title]
+                if not content.strip():
+                    continue  # Skip empty files
+
+                nodes.append({
+                    "id": node_id,
+                    "title": node_id,
+                    "content": content
+                })
+
+                for link in extract_links(content):
+                    links.append({
+                        "source": node_id,
+                        "target": link.strip()
                     })
-    except FileNotFoundError:
-        print(f"⚠️ File not found: {file_path}")
 
-# 💾 Step 3: Save as JSON
+                seen.add(node_id)
+
+            except Exception as e:
+                print(f"⚠️ Skipping {relative_path}: {e}")
+
+graph = {
+    "nodes": nodes,
+    "links": links
+}
+
 with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
-    json.dump({"nodes": nodes, "edges": edges}, f, indent=2)
+    json.dump(graph, f, ensure_ascii=False, indent=2)
 
-print(f"✅ Graph exported with {len(nodes)} nodes and {len(edges)} edges.")
+print(f"✅ Graph exported with {len(nodes)} nodes and {len(links)} edges.")

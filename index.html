@@ -2,16 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CappyLord Map</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #111;
-      color: #f2f2f2;
-      font-size: 16px;
+      overflow: hidden;
+      font-family: sans-serif;
     }
 
     #graph {
@@ -19,89 +16,68 @@
       height: 100vh;
     }
 
-    .tooltip {
+    #sidebar {
       position: absolute;
-      background: #222;
+      top: 0;
+      right: 0;
+      width: 400px;
+      height: 100vh;
+      background: #111;
       color: #fff;
-      border: 1px solid #444;
-      padding: 10px;
-      max-width: 300px;
-      font-size: 1rem;
-      z-index: 1000;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      white-space: normal;
+      overflow-y: auto;
+      padding: 20px;
+      border-left: 2px solid #444;
+      display: none;
+      z-index: 10;
     }
 
-    .tooltip a {
-      color: #4fd1c5;
-      text-decoration: underline;
+    #sidebar h2 {
+      margin-top: 0;
     }
 
-    .tooltip a:hover {
-      color: #63b3ed;
+    #sidebar .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    a {
+      color: #4af;
     }
   </style>
 </head>
 <body>
   <div id="graph"></div>
+  <div id="sidebar">
+    <span class="close-btn">&times;</span>
+    <div id="sidebar-content"></div>
+  </div>
 
-  <script src="https://unpkg.com/force-graph"></script>
+  <script src="https://unpkg.com/3d-force-graph"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
-    let currentTooltip = null;
-
     fetch('graph.json')
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => {
-        const Graph = ForceGraph()(document.getElementById('graph'))
+        const Graph = ForceGraph()
+          (document.getElementById('graph'))
           .graphData(data)
-          .nodeAutoColorBy('id')
-          .nodeLabel(node => {
-            const cleanLabel = (node.label || '').replace(/\[\[(.*?)\]\]/g, '$1');
-            return cleanLabel;
-          })
-          .nodeCanvasObjectMode(() => 'after')
-          .nodeCanvasObject((node, ctx, globalScale) => {
-            const label = (node.label || '').replace(/\[\[(.*?)\]\]/g, '$1');
-            const fontSize = Math.max(8, 16 / globalScale);
-            ctx.font = `${fontSize}px Segoe UI`;
-            ctx.fillStyle = 'white';
-            ctx.fillText(label, node.x + 6, node.y + 6);
-          })
+          .nodeLabel('id')
           .onNodeClick(node => {
-            if (node.content) showTooltip(node);
+            document.getElementById('sidebar').style.display = 'block';
+            const content = node.content ? marked.parse(node.content) : '<em>No content available.</em>';
+            document.getElementById('sidebar-content').innerHTML = `
+              <h2>${node.id}</h2>
+              ${content}
+            `;
           });
 
-        function showTooltip(node) {
-          if (currentTooltip) currentTooltip.remove();
-
-          const tooltip = document.createElement('div');
-          tooltip.className = 'tooltip';
-
-          const html = (node.content || 'No content available').replace(/\[\[(.*?)\]\]/g, (_, linkText) => {
-            const fileName = linkText.replace(/ /g, '-');
-            return `<a href="${fileName}.html" target="_blank">${linkText}</a>`;
-          });
-
-          tooltip.innerHTML = `<strong>${(node.label || 'No Label')}</strong><br>${html}`;
-          document.body.appendChild(tooltip);
-          currentTooltip = tooltip;
-
-          function positionTooltip(e) {
-            tooltip.style.left = e.pageX + 15 + 'px';
-            tooltip.style.top = e.pageY + 15 + 'px';
-          }
-
-          document.addEventListener('mousemove', positionTooltip);
-
-          tooltip.addEventListener('mouseleave', () => {
-            tooltip.remove();
-            document.removeEventListener('mousemove', positionTooltip);
-            currentTooltip = null;
-          });
-        }
-      })
-      .catch(err => console.error('Error loading graph:', err));
+        document.querySelector('.close-btn').addEventListener('click', () => {
+          document.getElementById('sidebar').style.display = 'none';
+        });
+      });
   </script>
 </body>
 </html>
