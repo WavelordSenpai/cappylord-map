@@ -2,36 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" href="favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CappyLord Map™</title>
+  <link rel="icon" href="favicon.ico" />
   <style>
-    html, body {
-      margin: 0;
-      height: 100%;
-      overflow: hidden;
-      background-color: #000;
-    }
-    #3d-graph {
-      width: 100vw;
-      height: 100vh;
-    }
+    html, body { margin: 0; height: 100%; overflow: hidden; background: black; }
+    #graph { width: 100vw; height: 100vh; }
   </style>
-
-  <!-- Enable ES Module import maps -->
-  <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.8.2/dist/es-module-shims.js"></script>
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.module.js",
-        "three/examples/jsm/controls/OrbitControls.js": "https://cdn.jsdelivr.net/npm/three@0.154.0/examples/jsm/controls/OrbitControls.js",
-        "three-forcegraph": "https://cdn.jsdelivr.net/npm/three-forcegraph@1.42.13/dist/three-forcegraph.module.js"
-      }
-    }
-  </script>
 </head>
 <body>
-  <div id="3d-graph"></div>
-  <script type="module" src="./main.js"></script>
+  <div id="graph"></div>
+
+  <!-- ✅ Classic UMD version for stable compatibility -->
+  <script src="https://unpkg.com/3d-force-graph@1.70.6/dist/3d-force-graph.min.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
