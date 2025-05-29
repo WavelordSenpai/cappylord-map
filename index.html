@@ -2,65 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CappyLord Map™</title>
   <link rel="icon" href="favicon.ico" />
-
   <style>
     body {
       margin: 0;
       overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f0f0f0;
+      font-family: Arial, sans-serif;
     }
-
     #node-content {
       position: absolute;
       top: 20px;
       left: 20px;
       width: 400px;
-      max-height: 80vh;
+      max-height: 90vh;
       overflow-y: auto;
-      background: #ffffffee;
-      backdrop-filter: blur(10px);
+      background: white;
       padding: 1em;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       display: none;
       z-index: 10;
     }
-
-    #node-content h2 {
-      margin-top: 0;
-      font-size: 1.4em;
-    }
-
-    #close-btn {
-      float: right;
-      background: none;
-      border: none;
-      font-size: 1.2em;
-      cursor: pointer;
-      color: #888;
-    }
-
-    #close-btn:hover {
-      color: #000;
-    }
   </style>
+  <script src="https://unpkg.com/3d-force-graph"></script>
 </head>
 <body>
   <div id="3d-graph" style="width: 100vw; height: 100vh;"></div>
+  <div id="node-content"></div>
 
-  <div id="node-content">
-    <button id="close-btn" title="Close">&times;</button>
-    <div id="node-text"></div>
-  </div>
-
-  <!-- ✅ WORKING ForceGraph CDN from Skypack -->
-  <script type="module">
-    import ForceGraph from 'https://cdn.skypack.dev/3d-force-graph';
-
+  <script>
+    // Load graph.json
     fetch('graph.json')
       .then(res => res.json())
       .then(data => {
@@ -69,17 +42,17 @@
           .nodeAutoColorBy('group')
           .nodeLabel('id')
           .onNodeClick(node => {
-            const contentPanel = document.getElementById('node-content');
-            const text = document.getElementById('node-text');
-            text.innerHTML = `<h2>${node.id}</h2><div>${node.content || "No content available."}</div>`;
-            contentPanel.style.display = 'block';
+            const contentDiv = document.getElementById('node-content');
+            contentDiv.innerHTML = `
+              <h2>${node.id}</h2>
+              <div>${node.content || "No content available."}</div>
+            `;
+            contentDiv.style.display = 'block';
           });
-
-        document.getElementById('close-btn').onclick = () => {
-          document.getElementById('node-content').style.display = 'none';
-        };
       })
-      .catch(err => console.error("Error loading graph.json:", err));
+      .catch(err => {
+        console.error("Error loading graph.json:", err);
+      });
   </script>
 </body>
 </html>
