@@ -1,58 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CappyLord Map™</title>
-  <link rel="icon" href="favicon.ico" />
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-    #node-content {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 400px;
-      max-height: 90vh;
-      overflow-y: auto;
-      background: white;
-      padding: 1em;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-      display: none;
-      z-index: 10;
-    }
-  </style>
-  <!-- ✅ Pinned version: No redirect -->
-  <script src="https://unpkg.com/3d-force-graph@1.70.6/dist/3d-force-graph.min.js"></script>
-</head>
-<body>
-  <div id="3d-graph" style="width: 100vw; height: 100vh;"></div>
-  <div id="node-content"></div>
+<div id="3d-graph" style="width: 100vw; height: 100vh;"></div>
+<div id="node-content" style="
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 400px;
+  background: white;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 10;
+"></div>
 
-  <script>
+<!-- Load ForceGraph from working CDN -->
+<script src="https://unpkg.com/3d-force-graph@1.70.6/dist/3d-force-graph.min.js"></script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    console.log("✅ DOM fully loaded");
+
+    // Check if ForceGraph is defined
+    if (typeof ForceGraph !== 'function') {
+      console.error("❌ ForceGraph is NOT defined. Check the script src.");
+      return;
+    } else {
+      console.log("✅ ForceGraph is defined and ready");
+    }
+
+    // Fetch graph data
     fetch('graph.json')
-      .then(res => res.json())
+      .then(res => {
+        console.log("📥 graph.json fetched successfully");
+        return res.json();
+      })
       .then(data => {
+        console.log("📦 graph.json parsed:", data);
+
+        // Initialize ForceGraph
         const Graph = ForceGraph()(document.getElementById('3d-graph'))
           .graphData(data)
           .nodeAutoColorBy('group')
           .nodeLabel('id')
           .onNodeClick(node => {
+            console.log("🧠 Node clicked:", node.id);
             const contentDiv = document.getElementById('node-content');
             contentDiv.innerHTML = `
               <h2>${node.id}</h2>
-              <div>${node.content || "No content available."}</div>
+              <p>${node.content || 'No content available.'}</p>
             `;
             contentDiv.style.display = 'block';
           });
+
+        console.log("🚀 ForceGraph initialized and running");
       })
       .catch(err => {
-        console.error("Error loading graph.json:", err);
+        console.error("❌ Error loading or parsing graph.json:", err);
       });
-  </script>
-</body>
-</html>
+  });
+</script>
