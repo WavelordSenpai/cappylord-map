@@ -26,14 +26,14 @@
       z-index: 10;
     }
   </style>
-  <script src="https://unpkg.com/3d-force-graph"></script>
+  <!-- ✅ Pinned version: No redirect -->
+  <script src="https://unpkg.com/3d-force-graph@1.70.6/dist/3d-force-graph.min.js"></script>
 </head>
 <body>
   <div id="3d-graph" style="width: 100vw; height: 100vh;"></div>
   <div id="node-content"></div>
 
   <script>
-    // Load graph.json
     fetch('graph.json')
       .then(res => res.json())
       .then(data => {
