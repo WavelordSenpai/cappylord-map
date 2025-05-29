@@ -2,52 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CappyLord Map</title>
-
-  <!-- ✅ Favicon (assuming in same folder or adjust if it's in /library or /assets) -->
-  <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-
-  <!-- ✅ ForceGraph from jsDelivr CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.10/dist/3d-force-graph.min.js"></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CappyLord Map™</title>
+  <link rel="icon" href="favicon.ico" />
+  <script src="https://unpkg.com/3d-force-graph"></script>
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
       overflow: hidden;
-      background-color: #111;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
     }
-    #3d-graph {
-      width: 100vw;
-      height: 100vh;
+    #node-content {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 400px;
+      max-height: 80vh;
+      overflow-y: auto;
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      padding: 1em;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 10;
+    }
+    #node-content h2 {
+      margin-top: 0;
+      font-size: 1.4em;
+    }
+    #close-btn {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.2em;
+      cursor: pointer;
+      color: #888;
+    }
+    #close-btn:hover {
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <div id="3d-graph"></div>
+  <div id="3d-graph" style="width: 100vw; height: 100vh;"></div>
+  <div id="node-content">
+    <button id="close-btn">&times;</button>
+    <div id="node-text"></div>
+  </div>
 
   <script>
-    // Load graph.json dynamically
-    fetch('./graph.json')
-      .then(res => {
-        if (!res.ok) throw new Error('graph.json not found!');
-        return res.json();
-      })
-      .then(graphData => {
-        const Graph = ForceGraph3D()
-          (document.getElementById('3d-graph'))
-          .graphData(graphData)
-          .nodeLabel('id')
+    fetch('graph.json')
+      .then(res => res.json())
+      .then(data => {
+        const Graph = ForceGraph()(document.getElementById('3d-graph'))
+          .graphData(data)
           .nodeAutoColorBy('group')
+          .nodeLabel('id')
           .onNodeClick(node => {
-            alert(`Node clicked:\n${node.id}\n\n${node.content || "No content loaded."}`);
+            const contentPanel = document.getElementById('node-content');
+            const text = document.getElementById('node-text');
+            text.innerHTML = `<h2>${node.id}</h2><div>${node.content || "No content available."}</div>`;
+            contentPanel.style.display = 'block';
           });
-      })
-      .catch(err => {
-        document.body.innerHTML = `<h1 style="color:red;">Error loading map: ${err.message}</h1>`;
-        console.error(err);
+
+        document.getElementById('close-btn').onclick = () => {
+          document.getElementById('node-content').style.display = 'none';
+        };
       });
   </script>
 </body>
