@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CappyLord Map</title>
 
-  <!-- ✅ Silence favicon 404 -->
+  <!-- ✅ Prevent 404 for favicon -->
   <link rel="icon" href="data:,">
 
-  <!-- ✅ Correct UMD CDN for ForceGraph -->
+  <!-- ✅ Load ForceGraph UMD before code runs -->
   <script src="https://unpkg.com/3d-force-graph/dist/3d-force-graph.min.js"></script>
 
   <style>
@@ -42,22 +42,25 @@
   <div id="3d-graph"></div>
   <div id="node-content"></div>
 
+  <!-- ✅ Now the JS only runs after everything loads -->
   <script>
-    fetch('graph.json')
-      .then(res => res.json())
-      .then(data => {
-        const Graph = ForceGraph()(document.getElementById('3d-graph'))
-          .graphData(data)
-          .nodeLabel(node => node.id)
-          .onNodeClick(node => {
-            const contentBox = document.getElementById('node-content');
-            contentBox.innerHTML = `<h3>${node.id}</h3><p>${node.content || "No content available."}</p>`;
-            contentBox.style.display = 'block';
-          })
-          .backgroundColor('#000')
-          .nodeColor(() => 'skyblue')
-          .linkColor(() => 'gray');
-      });
+    window.addEventListener('load', () => {
+      fetch('graph.json')
+        .then(res => res.json())
+        .then(data => {
+          const Graph = ForceGraph()(document.getElementById('3d-graph'))
+            .graphData(data)
+            .nodeLabel(node => node.id)
+            .onNodeClick(node => {
+              const contentBox = document.getElementById('node-content');
+              contentBox.innerHTML = `<h3>${node.id}</h3><p>${node.content || "No content available."}</p>`;
+              contentBox.style.display = 'block';
+            })
+            .backgroundColor('#000')
+            .nodeColor(() => 'skyblue')
+            .linkColor(() => 'gray');
+        });
+    });
   </script>
 </body>
 </html>
