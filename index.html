@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="data:," />
 
-  <!-- ✅ ForceGraph reliable UMD load -->
-  <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.71.5/dist/3d-force-graph.min.js"></script>
+  <!-- ✅ Load local version of ForceGraph -->
+  <script src="3d-force-graph.min.js"></script>
 
   <style>
     html, body {
@@ -40,7 +40,6 @@
   <div id="node-content"></div>
 
   <script>
-    // ✅ Ensure DOM and ForceGraph are ready
     window.addEventListener('DOMContentLoaded', () => {
       if (typeof ForceGraph === "undefined") {
         alert("❌ ForceGraph library failed to load.");
