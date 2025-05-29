@@ -5,13 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CappyLord Map™</title>
   <link rel="icon" href="favicon.ico" />
-  <script src="https://unpkg.com/3d-force-graph"></script>
+  
+  <!-- ✅ Correct ForceGraph CDN (Fixes ForceGraph is not defined) -->
+  <script src="https://unpkg.com/3d-force-graph/dist/3d-force-graph.min.js"></script>
+  
   <style>
     body {
       margin: 0;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0;
     }
+
     #node-content {
       position: absolute;
       top: 20px;
@@ -19,7 +24,7 @@
       width: 400px;
       max-height: 80vh;
       overflow-y: auto;
-      background: #ffffffcc;
+      background: #ffffffee;
       backdrop-filter: blur(10px);
       padding: 1em;
       border-radius: 12px;
@@ -27,10 +32,12 @@
       display: none;
       z-index: 10;
     }
+
     #node-content h2 {
       margin-top: 0;
       font-size: 1.4em;
     }
+
     #close-btn {
       float: right;
       background: none;
@@ -39,15 +46,19 @@
       cursor: pointer;
       color: #888;
     }
+
     #close-btn:hover {
       color: #000;
     }
   </style>
 </head>
 <body>
+  <!-- 🌌 Graph Canvas -->
   <div id="3d-graph" style="width: 100vw; height: 100vh;"></div>
+
+  <!-- 🧠 Node Content Panel -->
   <div id="node-content">
-    <button id="close-btn">&times;</button>
+    <button id="close-btn" title="Close">&times;</button>
     <div id="node-text"></div>
   </div>
 
@@ -66,10 +77,12 @@
             contentPanel.style.display = 'block';
           });
 
+        // Close button
         document.getElementById('close-btn').onclick = () => {
           document.getElementById('node-content').style.display = 'none';
         };
-      });
+      })
+      .catch(err => console.error("Error loading graph.json:", err));
   </script>
 </body>
 </html>
