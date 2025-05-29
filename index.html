@@ -2,20 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CappyLord Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:," />
 
-  <!-- ✅ Prevent 404 for favicon -->
-  <link rel="icon" href="data:,">
-
-  <!-- ✅ Load ForceGraph UMD before code runs -->
-  <script src="https://unpkg.com/3d-force-graph/dist/3d-force-graph.min.js"></script>
+  <!-- ✅ ForceGraph reliable UMD load -->
+  <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.71.5/dist/3d-force-graph.min.js"></script>
 
   <style>
     html, body {
       margin: 0;
       overflow: hidden;
-      background-color: #000;
+      background-color: black;
     }
     #3d-graph {
       width: 100vw;
@@ -28,12 +26,11 @@
       width: 300px;
       max-height: 90vh;
       overflow-y: auto;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       color: white;
       padding: 1em;
-      border-radius: 10px;
-      font-family: sans-serif;
-      font-size: 14px;
+      border-radius: 12px;
+      font-family: 'Segoe UI', sans-serif;
       display: none;
     }
   </style>
@@ -42,9 +39,14 @@
   <div id="3d-graph"></div>
   <div id="node-content"></div>
 
-  <!-- ✅ Now the JS only runs after everything loads -->
   <script>
-    window.addEventListener('load', () => {
+    // ✅ Ensure DOM and ForceGraph are ready
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof ForceGraph === "undefined") {
+        alert("❌ ForceGraph library failed to load.");
+        return;
+      }
+
       fetch('graph.json')
         .then(res => res.json())
         .then(data => {
@@ -53,11 +55,11 @@
             .nodeLabel(node => node.id)
             .onNodeClick(node => {
               const contentBox = document.getElementById('node-content');
-              contentBox.innerHTML = `<h3>${node.id}</h3><p>${node.content || "No content available."}</p>`;
+              contentBox.innerHTML = `<h2>${node.id}</h2><p>${node.content || "No content available."}</p>`;
               contentBox.style.display = 'block';
             })
             .backgroundColor('#000')
-            .nodeColor(() => 'skyblue')
+            .nodeColor(() => 'deepskyblue')
             .linkColor(() => 'gray');
         });
     });
