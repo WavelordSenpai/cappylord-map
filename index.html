@@ -2,66 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CappyLord Map</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="data:," />
 
-  <!-- ✅ Load local version of ForceGraph -->
-  <script src="3d-force-graph.min.js"></script>
+  <!-- ✅ Favicon (assuming in same folder or adjust if it's in /library or /assets) -->
+  <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+
+  <!-- ✅ ForceGraph from jsDelivr CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.10/dist/3d-force-graph.min.js"></script>
 
   <style>
     html, body {
       margin: 0;
+      padding: 0;
       overflow: hidden;
-      background-color: black;
+      background-color: #111;
+      font-family: Arial, sans-serif;
     }
     #3d-graph {
       width: 100vw;
       height: 100vh;
     }
-    #node-content {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 300px;
-      max-height: 90vh;
-      overflow-y: auto;
-      background: rgba(0,0,0,0.85);
-      color: white;
-      padding: 1em;
-      border-radius: 12px;
-      font-family: 'Segoe UI', sans-serif;
-      display: none;
-    }
   </style>
 </head>
 <body>
   <div id="3d-graph"></div>
-  <div id="node-content"></div>
 
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      if (typeof ForceGraph === "undefined") {
-        alert("❌ ForceGraph library failed to load.");
-        return;
-      }
-
-      fetch('graph.json')
-        .then(res => res.json())
-        .then(data => {
-          const Graph = ForceGraph()(document.getElementById('3d-graph'))
-            .graphData(data)
-            .nodeLabel(node => node.id)
-            .onNodeClick(node => {
-              const contentBox = document.getElementById('node-content');
-              contentBox.innerHTML = `<h2>${node.id}</h2><p>${node.content || "No content available."}</p>`;
-              contentBox.style.display = 'block';
-            })
-            .backgroundColor('#000')
-            .nodeColor(() => 'deepskyblue')
-            .linkColor(() => 'gray');
-        });
-    });
+    // Load graph.json dynamically
+    fetch('./graph.json')
+      .then(res => {
+        if (!res.ok) throw new Error('graph.json not found!');
+        return res.json();
+      })
+      .then(graphData => {
+        const Graph = ForceGraph3D()
+          (document.getElementById('3d-graph'))
+          .graphData(graphData)
+          .nodeLabel('id')
+          .nodeAutoColorBy('group')
+          .onNodeClick(node => {
+            alert(`Node clicked:\n${node.id}\n\n${node.content || "No content loaded."}`);
+          });
+      })
+      .catch(err => {
+        document.body.innerHTML = `<h1 style="color:red;">Error loading map: ${err.message}</h1>`;
+        console.error(err);
+      });
   </script>
 </body>
 </html>
