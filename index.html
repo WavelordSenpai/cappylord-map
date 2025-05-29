@@ -6,9 +6,9 @@
   <title>CappyLord Map™</title>
   <link rel="icon" href="favicon.ico" />
   
-  <!-- ✅ Correct ForceGraph CDN (Fixes ForceGraph is not defined) -->
-  <script src="https://unpkg.com/3d-force-graph/dist/3d-force-graph.min.js"></script>
-  
+  <!-- ✅ Reliable CDN for ForceGraph -->
+  <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.71.6/dist/3d-force-graph.min.js"></script>
+
   <style>
     body {
       margin: 0;
@@ -53,36 +53,37 @@
   </style>
 </head>
 <body>
-  <!-- 🌌 Graph Canvas -->
   <div id="3d-graph" style="width: 100vw; height: 100vh;"></div>
 
-  <!-- 🧠 Node Content Panel -->
   <div id="node-content">
     <button id="close-btn" title="Close">&times;</button>
     <div id="node-text"></div>
   </div>
 
-  <script>
-    fetch('graph.json')
-      .then(res => res.json())
-      .then(data => {
-        const Graph = ForceGraph()(document.getElementById('3d-graph'))
-          .graphData(data)
-          .nodeAutoColorBy('group')
-          .nodeLabel('id')
-          .onNodeClick(node => {
-            const contentPanel = document.getElementById('node-content');
-            const text = document.getElementById('node-text');
-            text.innerHTML = `<h2>${node.id}</h2><div>${node.content || "No content available."}</div>`;
-            contentPanel.style.display = 'block';
-          });
+  <!-- ✅ Main Script (now placed AFTER ForceGraph loads) -->
+  <script defer>
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch('graph.json')
+        .then(res => res.json())
+        .then(data => {
+          const Graph = ForceGraph()(document.getElementById('3d-graph'))
+            .graphData(data)
+            .nodeAutoColorBy('group')
+            .nodeLabel('id')
+            .onNodeClick(node => {
+              const contentPanel = document.getElementById('node-content');
+              const text = document.getElementById('node-text');
+              text.innerHTML = `<h2>${node.id}</h2><div>${node.content || "No content available."}</div>`;
+              contentPanel.style.display = 'block';
+            });
 
-        // Close button
-        document.getElementById('close-btn').onclick = () => {
-          document.getElementById('node-content').style.display = 'none';
-        };
-      })
-      .catch(err => console.error("Error loading graph.json:", err));
+          // Close button
+          document.getElementById('close-btn').onclick = () => {
+            document.getElementById('node-content').style.display = 'none';
+          };
+        })
+        .catch(err => console.error("Error loading graph.json:", err));
+    });
   </script>
 </body>
 </html>
