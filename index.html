@@ -2,12 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CappyLord Map™</title>
   <link rel="icon" href="favicon.ico" />
-  
-  <!-- ✅ Reliable CDN for ForceGraph -->
-  <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.71.6/dist/3d-force-graph.min.js"></script>
 
   <style>
     body {
@@ -60,9 +57,13 @@
     <div id="node-text"></div>
   </div>
 
-  <!-- ✅ Main Script (now placed AFTER ForceGraph loads) -->
-  <script defer>
-    window.addEventListener('DOMContentLoaded', () => {
+  <script>
+    // ✅ Dynamically load the ForceGraph library
+    const script = document.createElement('script');
+    script.src = "https://cdn.jsdelivr.net/npm/3d-force-graph@1.71.6/dist/3d-force-graph.min.js";
+    script.onload = () => {
+      console.log("✅ ForceGraph loaded!");
+
       fetch('graph.json')
         .then(res => res.json())
         .then(data => {
@@ -77,13 +78,16 @@
               contentPanel.style.display = 'block';
             });
 
-          // Close button
           document.getElementById('close-btn').onclick = () => {
             document.getElementById('node-content').style.display = 'none';
           };
         })
         .catch(err => console.error("Error loading graph.json:", err));
-    });
+    };
+    script.onerror = () => {
+      console.error("❌ Failed to load ForceGraph library.");
+    };
+    document.head.appendChild(script);
   </script>
 </body>
 </html>
