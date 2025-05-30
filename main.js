@@ -1,19 +1,19 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const Graph = ForceGraph3D()
-    (document.getElementById('graph'))
-    .nodeAutoColorBy('group')
-    .nodeLabel(node => `<div style="color: white;"><strong>${node.id}</strong><br>${node.content || ''}</div>`)
-    .onNodeClick(node => {
-      alert(`${node.id}\n\n${node.content || 'No content available.'}`);
-    });
+// main.js
 
-  fetch('graph.json')
-    .then(res => res.json())
-    .then(data => {
-      Graph.graphData(data);
-      console.log("✅ Graph loaded successfully");
-    })
-    .catch(err => {
-      console.error("❌ Error loading graph.json:", err);
-    });
-});
+fetch('graph.json?cacheBust=' + Date.now()) // prevent caching issues
+  .then(res => res.json())
+  .then(data => {
+    const Graph = ForceGraph()
+      (document.getElementById('graph'))
+      .graphData(data)
+      .nodeLabel('title')
+      .nodeAutoColorBy('id')
+      .linkDirectionalParticles(2)
+      .linkDirectionalParticleSpeed(0.005)
+      .onNodeClick(node => {
+        alert(node.content || 'No content available for this node.');
+      });
+
+    // Fit graph to screen
+    setTimeout(() => Graph.zoomToFit(400), 1000);
+  });
