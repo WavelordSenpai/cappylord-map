@@ -43,44 +43,56 @@
     fetch('graph.json?cacheBust=' + Date.now())
       .then(res => res.json())
       .then(data => {
-        // Color system based on keywords
+        // Color system based on keyword in title
         const colorMap = {
-          "Welcome": "#FFD700", // Gold
-          "Physical": "#FF4500", // Red/Orange
-          "Cellular": "#1E90FF", // Blue
-          "Esoteric": "#8A2BE2", // Purple
-          "Map": "#2E8B57"       // Green
+          "Welcome": "#FFD700",
+          "Physical": "#FF6347",
+          "Cellular": "#1E90FF",
+          "Esoteric": "#8A2BE2",
+          "Map": "#2E8B57"
         };
 
         const getNodeColor = title => {
           for (const keyword in colorMap) {
             if (title.includes(keyword)) return colorMap[keyword];
           }
-          return "#ccc"; // default gray
+          return "#ccc";
         };
 
         const Graph = ForceGraph()(document.getElementById('graph'))
           .graphData(data)
           .nodeLabel('title')
           .nodeColor(node => getNodeColor(node.title))
-          .nodeAutoColorBy('title')
+          .nodeCanvasObject((node, ctx, globalScale) => {
+            const label = node.title;
+            const fontSize = 12 / globalScale;
+            ctx.font = `${fontSize}px Sans-Serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = 'black';
+            ctx.fillText(label, node.x, node.y);
+          })
           .onNodeClick(node => {
-            const content = node.content.replace(/\[\[(.*?)\]\]/g, (_, linkText) =>
-              `<span class="link-button" onclick="focusNode('${linkText}')">${linkText}</span>`
-            );
-            document.getElementById('contentBox').innerHTML = `<h2>${node.title}</h2><p>${content}</p>`;
+            const parsedContent = (node.content || '').replace(/\[\[(.*?)\]\]/g, (_, id) => {
+              return `<span class="link-button" onclick="focusNode('${id}')">${id}</span>`;
+            });
+            document.getElementById('contentBox').innerHTML =
+              `<h2>${node.title}</h2><p>${parsedContent}</p>`;
           })
           .d3Force('charge').strength(-200);
 
-        window.focusNode = function (nodeId) {
-          const targetNode = data.nodes.find(n => n.id === nodeId);
+        window.focusNode = function (id) {
+          const targetNode = data.nodes.find(n => n.id === id.trim());
           if (targetNode) {
             Graph.centerAt(targetNode.x, targetNode.y, 1000);
             Graph.zoom(4, 1000);
+            const parsedContent = (targetNode.content || '').replace(/\[\[(.*?)\]\]/g, (_, id) => {
+              return `<span class="link-button" onclick="focusNode('${id}')">${id}</span>`;
+            });
             document.getElementById('contentBox').innerHTML =
-              `<h2>${targetNode.title}</h2><p>${targetNode.content}</p>`;
+              `<h2>${targetNode.title}</h2><p>${parsedContent}</p>`;
           } else {
-            alert('Node not found: ' + nodeId);
+            alert('Node not found: ' + id);
           }
         };
       });
