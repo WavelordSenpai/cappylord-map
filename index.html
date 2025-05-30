@@ -32,20 +32,9 @@
 <body>
   <div id="graph"></div>
   <div id="contentBox">Click a node to see its content.</div>
+
+  <!-- Load force-graph and main script -->
   <script src="https://unpkg.com/force-graph"></script>
-  <script>
-    fetch('graph.json')
-      .then(res => res.json())
-      .then(data => {
-        const Graph = ForceGraph()(document.getElementById('graph'))
-          .graphData(data)
-          .nodeLabel(node => node.id)
-          .nodeAutoColorBy('group')
-          .onNodeClick(node => {
-            document.getElementById('contentBox').innerHTML = `<h2>${node.id}</h2><p>${node.content}</p>`;
-          })
-          .d3Force('charge').strength(-200);
-      });
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>

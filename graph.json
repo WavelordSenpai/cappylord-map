@@ -14,6 +14,11 @@
       "id": "Core Pillars – Foundations of the Wavelord Map",
       "title": "Core Pillars – Foundations of the Wavelord Map",
       "content": "This is the foundation of all CappyLord domains. Visit [[Physical Optimization]] or [[Interactive Map Architecture]]."
+    },
+    {
+      "id": "TouchNode",
+      "title": "Touch Node",
+      "content": "This node is here just to trigger a Git update. You can safely ignore it."
     }
   ],
   "links": [
@@ -21,6 +26,7 @@
     { "source": "Welcome", "target": "Core Pillars – Foundations of the Wavelord Map" },
     { "source": "Cellular Optimization", "target": "Welcome" },
     { "source": "Core Pillars – Foundations of the Wavelord Map", "target": "Welcome" },
-    { "source": "Welcome", "target": "Welcome" }  // harmless self-link
+    { "source": "Welcome", "target": "TouchNode" },
+    { "source": "Welcome", "target": "Welcome" }
   ]
 }
