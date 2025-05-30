@@ -3,17 +3,24 @@
     {
       "id": "Welcome",
       "title": "Welcome",
-      "content": "# 🧿 Welcome to the Wavelord's Quintessential Human Development Map™\n\nGreetings, Seeker of Ascension 👋  \nYou have entered the sacred learning chamber of the **CappyLord Map™** — a multidimensional system uniting science, myth, and mastery.\n\n---\n\n## 🧠 What Is This Vault?\n\nThis is your **interactive knowledge matrix**. Each folder unlocks a core pillar of your transformation journey — physically, spiritually, culturally, and cosmically.\n\nThink of this as:\n- Your **Grimoire of Avatar Evolution**\n- Your **Codex of Cosmic Mastery**\n- A living system to unlock the **Superhuman Within**\n\n---\n\n## 🐾 Meet Your Guide: CappyLord™\n\n![CappyLord](insert-image-link-here)\n\nCappyLord™ is your divine capybara avatar — the face of wisdom, the bridge between worlds, and your silent teacher throughout this map.\n\n> 🔗 Learn more: [[CappyLord Core (Mascot + Symbolism)]]\n\n---\n\n## 🌐 Start Your Journey\n\nHere are your current unlocked realms:\n\n- 🔥 [[Physical Optimization]]\n- ⚛️ [[Cellular Optimization]]\n- 🌈 [[Metaphysical Optimization]] _(Coming soon)_\n- 🧬 [[Ancient Esoterica]] _(Coming soon)_\n- 🧠 [[Interactive Map Architecture]]\n\n---\n\n## 🛠 Tips\n\n- Use **graph view** to see how everything connects.\n- Press `Ctrl+Click` to open multiple notes and explore multi-dimensionally.\n- Use tags, backlinks, and portal links to customize your ascension path.\n\n---\n\nLet the journey begin 🛸✨  \n*“Know Thyself. Upgrade Thy Avatar.”*\nWelcome to the CappyLord Vault\n\nThis is your sacred map to superhuman optimization. Each folder below represents a realm of mastery. Use [[Physical Optimization]] or graph view to begin your journey.\n\n🐾 Guided by [[CappyLord Core (Mascot + Symbolism)]]\n🌟 Start with [[Core Pillars – Foundations of the Wavelord Map]]"
+      "content": "This is the Welcome node. Explore the [[Cellular Optimization]] and [[Core Pillars – Foundations of the Wavelord Map]] to begin."
     },
     {
       "id": "Cellular Optimization",
       "title": "Cellular Optimization",
-      "content": "[[ATP (Adenosine Triphosphate)]]  \n[[Mitochondrial Biogenesis]]  \n[[Red Light Therapy]]  \n[[Hormesis]]  \n[[Energy Systems]]\n\nCellular optimization is the gateway to enhanced energy, longevity, and inner vitality. This realm of the map reveals the deep science of your biological power plants — the mitochondria — and how to tune your body at the atomic level.\n\n---\n\n## ⚛️ What You'll Discover Here\n\n- How **ATP** fuels everything in your body\n- The mechanisms behind **mitochondrial biogenesis**\n- Techniques like **red light therapy** to energize cells\n- Understanding **hormesis** as a biological stress adaptation\n- Mastery over **energy systems**: anaerobic, aerobic, and phosphagen\n\n---\n\n## 🌌 The Mission\n\nWhen your cells are optimized, everything else follows. Your mind clears. Your energy rises. Your body heals. This is where **quantum meets biology**."
+      "content": "Cellular mastery zone. ⚛️ Learn about [[ATP (Adenosine Triphosphate)]], [[Mitochondrial Biogenesis]], and more."
     },
     {
       "id": "Core Pillars – Foundations of the Wavelord Map",
       "title": "Core Pillars – Foundations of the Wavelord Map",
-      "content": "🌟 The Core Pillars are the foundational domains of Wavelord’s Quintessential Human Development Map™. These categories represent the essential arenas of life mastery — from the physical vessel to the spiritual realms — and serve as the scaffolding for the avatar’s total optimization journey.\n\nEach pillar is a gateway into deeper practices, principles, and transformational technologies.\n\n🧱 Pillars:\n\n- 🔥 [[Physical Optimization]]\n- ⚛️ [[Cellular Optimization]]\n- 🌈 [[Metaphysical Optimization]]\n- 🧬 [[Ancient Esoterica]]\n- 🧠 [[Interactive Map Architecture]]\n\n🧭 Purpose of the Map:\n\nThese pillars are not isolated — they form a living, breathing network. Every node you explore connects to others, encouraging synthesis across disciplines. Mastery is achieved not through compartmentalization, but through **synergy**.\n\n> 🧙‍♂️ “From ethers to empires, fortune flows to those who master the waveform.”"
+      "content": "This is the foundation of all CappyLord domains. Visit [[Physical Optimization]] or [[Interactive Map Architecture]]."
     }
+  ],
+  "links": [
+    { "source": "Welcome", "target": "Cellular Optimization" },
+    { "source": "Welcome", "target": "Core Pillars – Foundations of the Wavelord Map" },
+    { "source": "Cellular Optimization", "target": "Welcome" },
+    { "source": "Core Pillars – Foundations of the Wavelord Map", "target": "Welcome" },
+    { "source": "Welcome", "target": "Welcome" }  // harmless self-link
   ]
 }
