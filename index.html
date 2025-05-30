@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CappyLord Map</title>
+  <meta charset="UTF-8" />
+  <title>CappyLord Map™</title>
   <style>
-    body { margin: 0; font-family: sans-serif; background: #0a0a0a; color: #fff; }
-    #graph { width: 100vw; height: 100vh; }
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    #graph {
+      width: 100vw;
+      height: 100vh;
+    }
     #contentBox {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 30vw;
+      top: 10px;
+      right: 10px;
+      width: 400px;
       max-height: 90vh;
       overflow-y: auto;
-      padding: 1em;
-      background: rgba(0, 0, 0, 0.85);
-      border: 2px solid #44f;
-      border-radius: 1em;
-      display: none;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      box-shadow: 0 0 10px #aaa;
+      z-index: 999;
     }
   </style>
 </head>
 <body>
   <div id="graph"></div>
-  <div id="contentBox"></div>
-
+  <div id="contentBox">Click a node to see its content.</div>
   <script src="https://unpkg.com/force-graph"></script>
   <script>
-    const graph = ForceGraph()(document.getElementById('graph'))
-      .nodeId('id')
-      .nodeLabel('title')
-      .nodeAutoColorBy('group')
-      .onNodeClick(node => {
-        const box = document.getElementById('contentBox');
-        box.innerHTML = marked.parse(node.content || "No content found");
-        box.style.display = 'block';
-      });
-
     fetch('graph.json')
       .then(res => res.json())
-      .then(data => graph.graphData({ nodes: data.nodes, links: [] }));
-
-    // Optional: Use marked.js for Markdown rendering
+      .then(data => {
+        const Graph = ForceGraph()(document.getElementById('graph'))
+          .graphData(data)
+          .nodeLabel(node => node.id)
+          .nodeAutoColorBy('group')
+          .onNodeClick(node => {
+            document.getElementById('contentBox').innerHTML = `<h2>${node.id}</h2><p>${node.content}</p>`;
+          })
+          .d3Force('charge').strength(-200);
+      });
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>
