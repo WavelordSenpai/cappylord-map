@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <title>CappyLord Map™</title>
-  <link rel="icon" href="favicon.ico" />
   <style>
     body, html {
       margin: 0;
       padding: 0;
       overflow: hidden;
       font-family: sans-serif;
-      background-color: #f0f0f0;
     }
     #graph {
       width: 100vw;
@@ -25,12 +23,12 @@
       overflow-y: auto;
       padding: 20px;
       background: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      box-shadow: 0 0 15px #aaa;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #aaa;
       z-index: 999;
     }
-    #contentBox a {
-      color: #0077ff;
+    .link-button {
+      color: #1E90FF;
       text-decoration: underline;
       cursor: pointer;
     }
@@ -42,38 +40,49 @@
 
   <script src="https://unpkg.com/force-graph"></script>
   <script>
-    function renderContent(raw) {
-      return raw.replace(/\[\[(.*?)\]\]/g, (_, link) => {
-        return `<a onclick="jumpToNode('${link}')">${link}</a>`;
-      });
-    }
-
-    function jumpToNode(nodeId) {
-      const node = Graph.graphData().nodes.find(n => n.id === nodeId);
-      if (node) {
-        Graph.centerAt(node.x, node.y, 1000);
-        Graph.zoom(3.5, 1000);
-        document.getElementById('contentBox').innerHTML = 
-          `<h2>${node.title || node.id}</h2><p>${renderContent(node.content || '')}</p>`;
-      } else {
-        alert("Node not found: " + nodeId);
-      }
-    }
-
-    let Graph;
-
-    fetch('graph.json?cacheBust=' + Date.now()) // prevent caching issues
+    fetch('graph.json?cacheBust=' + Date.now())
       .then(res => res.json())
       .then(data => {
-        Graph = ForceGraph()(document.getElementById('graph'))
+        // Color system based on keywords
+        const colorMap = {
+          "Welcome": "#FFD700", // Gold
+          "Physical": "#FF4500", // Red/Orange
+          "Cellular": "#1E90FF", // Blue
+          "Esoteric": "#8A2BE2", // Purple
+          "Map": "#2E8B57"       // Green
+        };
+
+        const getNodeColor = title => {
+          for (const keyword in colorMap) {
+            if (title.includes(keyword)) return colorMap[keyword];
+          }
+          return "#ccc"; // default gray
+        };
+
+        const Graph = ForceGraph()(document.getElementById('graph'))
           .graphData(data)
           .nodeLabel('title')
-          .nodeAutoColorBy('id')
+          .nodeColor(node => getNodeColor(node.title))
+          .nodeAutoColorBy('title')
           .onNodeClick(node => {
-            document.getElementById('contentBox').innerHTML =
-              `<h2>${node.title}</h2><p>${renderContent(node.content)}</p>`;
+            const content = node.content.replace(/\[\[(.*?)\]\]/g, (_, linkText) =>
+              `<span class="link-button" onclick="focusNode('${linkText}')">${linkText}</span>`
+            );
+            document.getElementById('contentBox').innerHTML = `<h2>${node.title}</h2><p>${content}</p>`;
           })
           .d3Force('charge').strength(-200);
+
+        window.focusNode = function (nodeId) {
+          const targetNode = data.nodes.find(n => n.id === nodeId);
+          if (targetNode) {
+            Graph.centerAt(targetNode.x, targetNode.y, 1000);
+            Graph.zoom(4, 1000);
+            document.getElementById('contentBox').innerHTML =
+              `<h2>${targetNode.title}</h2><p>${targetNode.content}</p>`;
+          } else {
+            alert('Node not found: ' + nodeId);
+          }
+        };
       });
   </script>
 </body>
