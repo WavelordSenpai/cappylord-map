@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>CappyLord Map™</title>
+  <link rel="icon" href="favicon.ico" />
   <style>
     body, html {
       margin: 0;
       padding: 0;
       overflow: hidden;
       font-family: sans-serif;
+      background-color: #f0f0f0;
     }
     #graph {
       width: 100vw;
@@ -23,9 +25,14 @@
       overflow-y: auto;
       padding: 20px;
       background: rgba(255, 255, 255, 0.95);
-      border-radius: 10px;
-      box-shadow: 0 0 10px #aaa;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #aaa;
       z-index: 999;
+    }
+    #contentBox a {
+      color: #0077ff;
+      text-decoration: underline;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -33,8 +40,41 @@
   <div id="graph"></div>
   <div id="contentBox">Click a node to see its content.</div>
 
-  <!-- Load force-graph and main script -->
   <script src="https://unpkg.com/force-graph"></script>
-  <script src="main.js"></script>
+  <script>
+    function renderContent(raw) {
+      return raw.replace(/\[\[(.*?)\]\]/g, (_, link) => {
+        return `<a onclick="jumpToNode('${link}')">${link}</a>`;
+      });
+    }
+
+    function jumpToNode(nodeId) {
+      const node = Graph.graphData().nodes.find(n => n.id === nodeId);
+      if (node) {
+        Graph.centerAt(node.x, node.y, 1000);
+        Graph.zoom(3.5, 1000);
+        document.getElementById('contentBox').innerHTML = 
+          `<h2>${node.title || node.id}</h2><p>${renderContent(node.content || '')}</p>`;
+      } else {
+        alert("Node not found: " + nodeId);
+      }
+    }
+
+    let Graph;
+
+    fetch('graph.json?cacheBust=' + Date.now()) // prevent caching issues
+      .then(res => res.json())
+      .then(data => {
+        Graph = ForceGraph()(document.getElementById('graph'))
+          .graphData(data)
+          .nodeLabel('title')
+          .nodeAutoColorBy('id')
+          .onNodeClick(node => {
+            document.getElementById('contentBox').innerHTML =
+              `<h2>${node.title}</h2><p>${renderContent(node.content)}</p>`;
+          })
+          .d3Force('charge').strength(-200);
+      });
+  </script>
 </body>
 </html>
