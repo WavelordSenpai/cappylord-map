@@ -3,26 +3,21 @@
     {
       "id": "Welcome",
       "title": "Welcome",
-      "group": "Intro",
-      "content": "Welcome to the CappyLord Map™. Start your journey through [[Cellular Optimization]] and [[Core Pillars – Foundations of the Wavelord Map]]."
+      "content": "This is the Welcome node. Explore the [[Cellular Optimization]] and [[Core Pillars – Foundations of the Wavelord Map]] to begin."
     },
     {
       "id": "Cellular Optimization",
       "title": "Cellular Optimization",
-      "group": "Biology",
-      "content": "Cellular mastery zone. ⚛️ Learn about [[ATP (Adenosine Triphosphate)]], [[Mitochondrial Biogenesis]], and more."
+      "content": "Learn about [[ATP (Adenosine Triphosphate)]], [[Mitochondrial Biogenesis]] and more."
     },
     {
       "id": "Core Pillars – Foundations of the Wavelord Map",
       "title": "Core Pillars – Foundations of the Wavelord Map",
-      "group": "Philosophy",
-      "content": "This is the foundation of all CappyLord domains. Visit [[Physical Optimization]] or [[Interactive Map Architecture]]."
+      "content": "Foundation of all CappyLord domains. See [[Physical Optimization]] or [[Interactive Map Architecture]]."
     }
   ],
   "links": [
     { "source": "Welcome", "target": "Cellular Optimization" },
-    { "source": "Welcome", "target": "Core Pillars – Foundations of the Wavelord Map" },
-    { "source": "Cellular Optimization", "target": "Welcome" },
-    { "source": "Core Pillars – Foundations of the Wavelord Map", "target": "Welcome" }
+    { "source": "Welcome", "target": "Core Pillars – Foundations of the Wavelord Map" }
   ]
 }

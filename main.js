@@ -1,38 +1,32 @@
-fetch('graph.json?cacheBust=' + Date.now())
+fetch('graph.json?cacheBust=' + Date.now()) // prevent caching issues
   .then(res => res.json())
   .then(data => {
-    const Graph = ForceGraph()(document.getElementById('graph'))
+    const graph = ForceGraph()(document.getElementById('graph'))
       .graphData(data)
       .nodeLabel('title')
-      .nodeAutoColorBy('group')  // Category-based color
+      .nodeAutoColorBy('group')
       .linkDirectionalParticles(2)
-      .linkDirectionalParticleSpeed(0.003)
+      .linkDirectionalParticleSpeed(0.005)
       .onNodeClick(node => {
-        const contentBox = document.getElementById('contentBox');
-        let contentHTML = `<h2>${node.title}</h2><p>${node.content}</p>`;
-
-        // Convert [[links]] into clickable <a> tags
-        contentHTML = contentHTML.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
-          const target = data.nodes.find(n => n.id === p1.trim());
-          return target
-            ? `<a onclick="window.selectNode('${p1.trim()}')">${p1.trim()}</a>`
-            : `<span style="color:gray">${p1.trim()} (Not Found)</span>`;
+        // Render node content with clickable wiki-style links
+        const content = (node.content || '').replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
+          return `<a onclick="navigateToNode('${p1}')">${p1}</a>`;
         });
 
-        contentBox.innerHTML = contentHTML;
+        document.getElementById('contentBox').innerHTML = `<h2>${node.title}</h2><p>${content}</p>`;
       });
 
-    // Expose link-click helper
-    window.selectNode = function (nodeId) {
-      const node = data.nodes.find(n => n.id === nodeId);
-      if (node) {
-        Graph.centerAt(node.x, node.y, 1000);
-        Graph.zoomToFit(400);
-        document.getElementById('contentBox').innerHTML =
-          `<h2>${node.title}</h2><p>${node.content}</p>`;
+    // Allow jumping between nodes by name
+    window.navigateToNode = (nodeId) => {
+      const target = data.nodes.find(n => n.id === nodeId);
+      if (target) {
+        document.getElementById('contentBox').innerHTML = `<h2>${target.title}</h2><p>${(target.content || '').replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
+          return `<a onclick="navigateToNode('${p1}')">${p1}</a>`;
+        })}</p>`;
+      } else {
+        alert(`Node "${nodeId}" not found.`);
       }
     };
 
-    // Fit to screen after load
-    setTimeout(() => Graph.zoomToFit(400), 800);
+    setTimeout(() => graph.zoomToFit(400), 1000);
   });
