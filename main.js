@@ -6,7 +6,6 @@ fetch('graph.json?cacheBust=' + Date.now())
       .nodeLabel(node => node.title || node.id)
       .nodeAutoColorBy('group')
       .onNodeClick(node => {
-        // Replace [[Link]] with clickable anchor tags
         const contentHTML = node.content?.replace(/\[\[(.+?)\]\]/g, (match, p1) => {
           return `<a onclick="jumpToNode('${p1}')">${p1}</a>`;
         }) || 'No content.';
@@ -16,13 +15,16 @@ fetch('graph.json?cacheBust=' + Date.now())
     // Zoom to fit after load
     setTimeout(() => Graph.zoomToFit(400), 1000);
 
-    // Make jumpToNode globally accessible
+    // Global link jump function
     window.jumpToNode = (nodeId) => {
       const target = data.nodes.find(n => n.id === nodeId);
       if (target) {
         Graph.centerAt(target.x, target.y, 1000);
         Graph.zoom(4, 1000);
-        document.getElementById('contentBox').innerHTML = `<h2>${target.title || target.id}</h2><p>${target.content}</p>`;
+        const contentHTML = target.content?.replace(/\[\[(.+?)\]\]/g, (match, p1) => {
+          return `<a onclick="jumpToNode('${p1}')">${p1}</a>`;
+        }) || 'No content.';
+        document.getElementById('contentBox').innerHTML = `<h2>${target.title || target.id}</h2><p>${contentHTML}</p>`;
       } else {
         alert(`Node "${nodeId}" not found.`);
       }
