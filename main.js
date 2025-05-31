@@ -1,5 +1,3 @@
-import ForceGraph from './3d-force-graph.min.js';
-
 fetch('graph.json')
   .then(res => res.json())
   .then(graphData => {
@@ -12,7 +10,7 @@ fetch('graph.json')
         const contentDiv = document.getElementById('content');
         contentDiv.innerHTML = node.content || "<em>No content available</em>";
 
-        // Attempt to resolve [[Wiki Links]]
+        // Wiki-style link handling
         const links = node.content?.match(/\[\[(.*?)\]\]/g) || [];
         links.forEach(link => {
           const target = link.replace(/\[\[|\]\]/g, '');

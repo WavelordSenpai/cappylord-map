@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CappyLord Map</title>
-  <link rel="icon" href="favicon.ico">
+  <link rel="icon" href="favicon.ico" />
   <style>
     body {
       margin: 0;
@@ -34,6 +34,9 @@
 <body>
   <div id="3d-graph"></div>
   <div id="content"><em>Select a node to view content.</em></div>
-  <script type="module" src="main.js"></script>
+
+  <!-- ✅ Load force-graph globally -->
+  <script src="3d-force-graph.min.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
