@@ -1,32 +1,37 @@
-fetch('graph.json?cacheBust=' + Date.now())
+import ForceGraph from './3d-force-graph.min.js';
+
+fetch('graph.json')
   .then(res => res.json())
-  .then(data => {
-    const Graph = ForceGraph()(document.getElementById('graph'))
-      .graphData(data)
-      .nodeLabel(node => node.title || node.id)
+  .then(graphData => {
+    const elem = document.getElementById('3d-graph');
+    const Graph = ForceGraph()(elem)
+      .graphData(graphData)
+      .nodeLabel(node => node.id)
       .nodeAutoColorBy('group')
       .onNodeClick(node => {
-        const contentHTML = (node.content || 'No content.').replace(/\[\[(.+?)\]\]/g, (_, p1) => {
-          return `<a onclick="jumpToNode('${p1}')">${p1}</a>`;
+        const contentDiv = document.getElementById('content');
+        contentDiv.innerHTML = node.content || "<em>No content available</em>";
+
+        // Attempt to resolve [[Wiki Links]]
+        const links = node.content?.match(/\[\[(.*?)\]\]/g) || [];
+        links.forEach(link => {
+          const target = link.replace(/\[\[|\]\]/g, '');
+          const anchor = `<a href="#" class="wikilink" data-target="${target}">${target}</a>`;
+          contentDiv.innerHTML = contentDiv.innerHTML.replace(link, anchor);
         });
-        document.getElementById('contentBox').innerHTML = `<h2>${node.title || node.id}</h2><p>${contentHTML}</p>`;
+
+        document.querySelectorAll('.wikilink').forEach(link => {
+          link.addEventListener('click', e => {
+            e.preventDefault();
+            const targetNode = graphData.nodes.find(n => n.id === link.dataset.target);
+            if (targetNode) {
+              Graph.centerAt(targetNode.x, targetNode.y, 1000);
+              Graph.zoomToFit(400);
+              contentDiv.innerHTML = targetNode.content || "<em>No content available</em>";
+            } else {
+              contentDiv.innerHTML = `<strong>Node not found:</strong> ${link.dataset.target}`;
+            }
+          });
+        });
       });
-
-    // Fit to screen
-    setTimeout(() => Graph.zoomToFit(400), 1000);
-
-    // Wiki-style jump
-    window.jumpToNode = (nodeId) => {
-      const target = data.nodes.find(n => n.id === nodeId);
-      if (target) {
-        Graph.centerAt(target.x, target.y, 1000);
-        Graph.zoom(4, 1000);
-        const contentHTML = (target.content || 'No content.').replace(/\[\[(.+?)\]\]/g, (_, p1) => {
-          return `<a onclick="jumpToNode('${p1}')">${p1}</a>`;
-        });
-        document.getElementById('contentBox').innerHTML = `<h2>${target.title || target.id}</h2><p>${contentHTML}</p>`;
-      } else {
-        alert(`Node "${nodeId}" not found.`);
-      }
-    };
   });
