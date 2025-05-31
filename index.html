@@ -9,14 +9,12 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
-      font-family: sans-serif;
+      font-family: 'Segoe UI', sans-serif;
     }
-
     #graph {
       width: 100vw;
       height: 100vh;
     }
-
     #contentBox {
       position: absolute;
       top: 10px;
@@ -26,13 +24,15 @@
       overflow-y: auto;
       padding: 20px;
       background: rgba(255, 255, 255, 0.95);
-      border-radius: 10px;
+      border-radius: 12px;
       box-shadow: 0 0 10px #aaa;
-      z-index: 999;
+      z-index: 1000;
     }
-
-    a {
-      color: blue;
+    #contentBox h2 {
+      margin-top: 0;
+    }
+    #contentBox a {
+      color: #0066ff;
       text-decoration: underline;
       cursor: pointer;
     }
@@ -40,9 +40,11 @@
 </head>
 <body>
   <div id="graph"></div>
-  <div id="contentBox">Click a node to see its content.</div>
+  <div id="contentBox">🧠 Click a node to explore its knowledge.</div>
 
-  <script src="3d-force-graph.min.js"></script>
+  <!-- ✅ Correct 3d-force-graph CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.71.0/dist/3d-force-graph.min.js"></script>
+  <!-- ✅ Your script (loaded after the library) -->
   <script src="main.js"></script>
 </body>
 </html>
