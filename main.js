@@ -1,32 +1,30 @@
-fetch('graph.json?cacheBust=' + Date.now()) // prevent caching issues
+fetch('graph.json?cacheBust=' + Date.now())
   .then(res => res.json())
   .then(data => {
-    const graph = ForceGraph()(document.getElementById('graph'))
+    const Graph = ForceGraph()(document.getElementById('graph'))
       .graphData(data)
-      .nodeLabel('title')
+      .nodeLabel(node => node.title || node.id)
       .nodeAutoColorBy('group')
-      .linkDirectionalParticles(2)
-      .linkDirectionalParticleSpeed(0.005)
       .onNodeClick(node => {
-        // Render node content with clickable wiki-style links
-        const content = (node.content || '').replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
-          return `<a onclick="navigateToNode('${p1}')">${p1}</a>`;
-        });
-
-        document.getElementById('contentBox').innerHTML = `<h2>${node.title}</h2><p>${content}</p>`;
+        // Replace [[Link]] with clickable anchor tags
+        const contentHTML = node.content?.replace(/\[\[(.+?)\]\]/g, (match, p1) => {
+          return `<a onclick="jumpToNode('${p1}')">${p1}</a>`;
+        }) || 'No content.';
+        document.getElementById('contentBox').innerHTML = `<h2>${node.title || node.id}</h2><p>${contentHTML}</p>`;
       });
 
-    // Allow jumping between nodes by name
-    window.navigateToNode = (nodeId) => {
+    // Zoom to fit after load
+    setTimeout(() => Graph.zoomToFit(400), 1000);
+
+    // Make jumpToNode globally accessible
+    window.jumpToNode = (nodeId) => {
       const target = data.nodes.find(n => n.id === nodeId);
       if (target) {
-        document.getElementById('contentBox').innerHTML = `<h2>${target.title}</h2><p>${(target.content || '').replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
-          return `<a onclick="navigateToNode('${p1}')">${p1}</a>`;
-        })}</p>`;
+        Graph.centerAt(target.x, target.y, 1000);
+        Graph.zoom(4, 1000);
+        document.getElementById('contentBox').innerHTML = `<h2>${target.title || target.id}</h2><p>${target.content}</p>`;
       } else {
         alert(`Node "${nodeId}" not found.`);
       }
     };
-
-    setTimeout(() => graph.zoomToFit(400), 1000);
   });
