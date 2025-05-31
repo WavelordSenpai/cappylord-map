@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <title>CappyLord Map™</title>
+  <link rel="icon" href="favicon.ico" />
   <style>
     body, html {
       margin: 0;
       padding: 0;
       overflow: hidden;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
     }
     #graph {
       width: 100vw;
@@ -23,78 +24,24 @@
       overflow-y: auto;
       padding: 20px;
       background: rgba(255, 255, 255, 0.95);
-      border-radius: 10px;
+      border-radius: 12px;
       box-shadow: 0 0 10px #aaa;
-      z-index: 999;
+      z-index: 1000;
     }
-    .link-button {
-      color: #0077cc;
+    #contentBox h2 {
+      margin-top: 0;
+    }
+    #contentBox a {
+      color: #0066ff;
       text-decoration: underline;
       cursor: pointer;
-      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <div id="graph"></div>
-  <div id="contentBox">Click a node to see its content.</div>
-
-  <script src="https://unpkg.com/force-graph"></script>
-  <script>
-    fetch('graph.json?cacheBust=' + Date.now())
-      .then(res => res.json())
-      .then(data => {
-        const colorMap = {
-          "Welcome": "#FFD700",
-          "Physical": "#FF6347",
-          "Cellular": "#1E90FF",
-          "Esoteric": "#8A2BE2",
-          "Map": "#2E8B57"
-        };
-
-        const getNodeColor = title => {
-          for (const keyword in colorMap) {
-            if (title.includes(keyword)) return colorMap[keyword];
-          }
-          return "#888";
-        };
-
-        const Graph = ForceGraph()(document.getElementById('graph'))
-          .graphData(data)
-          .nodeLabel('title')
-          .nodeColor(node => getNodeColor(node.title))
-          .nodeCanvasObject((node, ctx, globalScale) => {
-            const label = node.title;
-            const fontSize = 14 / globalScale;
-            ctx.font = `${fontSize}px sans-serif`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillStyle = 'black';
-            ctx.fillText(label, node.x, node.y);
-          })
-          .nodeCanvasObjectMode(() => 'after')
-          .onNodeClick(node => {
-            const parsedContent = (node.content || '').replace(/\[\[(.*?)\]\]/g, (_, id) => {
-              return `<span class="link-button" onclick="focusNode('${id}')">${id}</span>`;
-            });
-            document.getElementById('contentBox').innerHTML = `<h2>${node.title}</h2><p>${parsedContent}</p>`;
-          })
-          .d3Force('charge').strength(-250);
-
-        window.focusNode = function (id) {
-          const targetNode = data.nodes.find(n => n.id.trim() === id.trim());
-          if (targetNode) {
-            Graph.centerAt(targetNode.x, targetNode.y, 1000);
-            Graph.zoom(4, 1000);
-            const parsedContent = (targetNode.content || '').replace(/\[\[(.*?)\]\]/g, (_, id) => {
-              return `<span class="link-button" onclick="focusNode('${id}')">${id}</span>`;
-            });
-            document.getElementById('contentBox').innerHTML = `<h2>${targetNode.title}</h2><p>${parsedContent}</p>`;
-          } else {
-            alert('Node not found: ' + id);
-          }
-        };
-      });
-  </script>
+  <div id="contentBox">🧠 Click a node to explore its knowledge.</div>
+  <script src="https://unpkg.com/3d-force-graph"></script>
+  <script src="main.js"></script>
 </body>
 </html>
