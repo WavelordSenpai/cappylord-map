@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <title>CappyLord Map™</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
       overflow: hidden;
@@ -28,17 +29,17 @@
       z-index: 999;
     }
     a {
-      color: blue;
-      text-decoration: underline;
+      color: #1a73e8;
       cursor: pointer;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <div id="graph"></div>
-  <div id="contentBox">Click a node to see its content.</div>
+  <div id="contentBox">Click a node to view its content.</div>
 
-  <!-- Load ForceGraph BEFORE main.js -->
+  <!-- ✅ Load ForceGraph first -->
   <script src="https://unpkg.com/3d-force-graph"></script>
   <script src="main.js"></script>
 </body>
